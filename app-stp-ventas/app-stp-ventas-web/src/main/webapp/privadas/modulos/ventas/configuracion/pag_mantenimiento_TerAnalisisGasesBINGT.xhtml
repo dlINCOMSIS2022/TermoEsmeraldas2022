@@ -1,0 +1,453 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerAnalisisGasesBINGT.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Hora"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Hora"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.hora}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Hora">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Metodo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Metodo"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.metodo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Metodo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Ubicacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Ubicacion"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ubicacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Ubicacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.potencia}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Potencia">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Caudal de Aire"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Caudal de Aire"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.caudal_de_aire}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Caudal de Aire">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Caudal de Fuel"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Caudal de Fuel"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.caudal_de_fuel}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Caudal de Fuel">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Porcentaje O2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Porcentaje O2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.porcentaje_o2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Porcentaje O2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Porcentaje CO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Porcentaje CO2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.porcentaje_co2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Porcentaje CO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Exceso de Aire"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Exceso de Aire"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.exceso_de_aire}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Exceso de Aire">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm CO"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm CO"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_co}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm CO">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm NOx"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm NOx"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_nox}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm NOx">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm SO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm SO2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_so2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm SO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerAnalisisGasesBINGT.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerAnalisisGasesBINGT.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerAnalisisGasesBINGT.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerAnalisisGasesBINGT.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+<p:column headerText="Hora">
+<h:outputText value="#{dato.hora}" />
+</p:column>
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+<p:column headerText="Metodo">
+<h:outputText value="#{dato.metodo}" />
+</p:column>
+<p:column headerText="Ubicacion">
+<h:outputText value="#{dato.ubicacion}" />
+</p:column>
+<p:column headerText="Potencia">
+<h:outputText value="#{dato.potencia}" />
+</p:column>
+<p:column headerText="Caudal de Aire">
+<h:outputText value="#{dato.caudal_de_aire}" />
+</p:column>
+<p:column headerText="Caudal de Fuel">
+<h:outputText value="#{dato.caudal_de_fuel}" />
+</p:column>
+<p:column headerText="Porcentaje O2">
+<h:outputText value="#{dato.porcentaje_o2}" />
+</p:column>
+<p:column headerText="Porcentaje CO2">
+<h:outputText value="#{dato.porcentaje_co2}" />
+</p:column>
+<p:column headerText="Exceso de Aire">
+<h:outputText value="#{dato.exceso_de_aire}" />
+</p:column>
+<p:column headerText="ppm CO">
+<h:outputText value="#{dato.ppm_co}" />
+</p:column>
+<p:column headerText="ppm NOx">
+<h:outputText value="#{dato.ppm_nox}" />
+</p:column>
+<p:column headerText="ppm SO2">
+<h:outputText value="#{dato.ppm_so2}" />
+</p:column>
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerAnalisisGasesBINGT.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerAnalisisGasesBINGT.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Hora"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Hora"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.hora}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Hora">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Metodo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Metodo"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.metodo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Metodo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Ubicacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Ubicacion"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ubicacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Ubicacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.potencia}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Potencia">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Caudal de Aire"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Caudal de Aire"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.caudal_de_aire}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Caudal de Aire">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Caudal de Fuel"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Caudal de Fuel"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.caudal_de_fuel}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Caudal de Fuel">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Porcentaje O2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Porcentaje O2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.porcentaje_o2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Porcentaje O2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Porcentaje CO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Porcentaje CO2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.porcentaje_co2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Porcentaje CO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Exceso de Aire"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Exceso de Aire"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.exceso_de_aire}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Exceso de Aire">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm CO"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm CO"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_co}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm CO">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm NOx"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm NOx"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_nox}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm NOx">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="ppm SO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="ppm SO2"
+    value="#{beanTerAnalisisGasesBINGT.entidadRegistrar.ppm_so2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor ppm SO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerAnalisisGasesBINGT.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerAnalisisGasesBINGT.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

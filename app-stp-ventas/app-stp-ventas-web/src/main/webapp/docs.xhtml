@@ -1,0 +1,753 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Documentation</ui:define>
+
+    <ui:define name="head">
+        <style type="text/css">
+            .docs h1 {
+                margin-top: 30px;
+            }
+
+            .docs pre {
+                font-family: monospace;
+                background-color: #dee4e9;
+                color: #292B2C;
+                padding: 1em;
+                font-size: 14px;
+                border-radius: 3px;
+                overflow: auto;
+            }
+
+            .docs p, .docs li {
+                line-height: 1.5;
+            }
+
+            .video-container {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 56.25%;
+            }
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <li><p:link outcome="/docs">Documentation</p:link></li>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card docs">
+                    <h1>Getting Started</h1>
+                    <p>To begin with, you'd need SASS to compile CSS, proceed to <a href="https://sass-lang.com/install">SASS Installation</a> before beginning if you do not have SASS available in your command line.</p>
+                    <p>Demo project has an integrated jetty plugin so running the sample is easy as building the css first followed by the mvn jetty:run command.</p>
+<pre>
+sass --update src/main/webapp/resources/ --sourcemap=none
+mvn jetty:run
+</pre> 
+                    <p>Navigate to http://localhost:8080/mirage to view the demos which is exactly same as the live version.</p>                 
+                    
+                    <h1>Template</h1>
+                    <p>Mirage utilizes <a href="http://docs.oracle.com/javaee/6/tutorial/doc/giqxp.html">JSF templating APIs</a> and provides a main template.xhtml along with additional <i>topbar</i>, <i>sidebar</i>, <i>rightpanel</i>, <i>breadcrumb</i> and <i>footer</i> fragments for the base layout.
+                        These xhtml files must be placed under WEB-INF folder and client pages should reference the template.xhtml as their template.
+                        Provided empty.xhtml is a sample content page using the main template.xhtml that defines "content" as the main ui:define placeholder. By default template defines 3 placeholders
+                        (page title, header content and actual content) to insert content and you can add more as per your requirements.</p>
+
+                    <p>Sample page below uses the main template from Mirage.</p>
+<pre>
+&lt;ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"&gt;
+
+    &lt;ui:define name="title"&gt;Test Page&lt;/ui:define&gt;
+
+    &lt;ui:define name="content"&gt;
+        Content goes here
+    &lt;/ui:define&gt;
+
+&lt;/ui:composition&gt;
+</pre>
+
+                    <p>Other required resources are the css, js and images that are located inside resources/mirage-layout folder, simply copy the mirage-layout folder to your %WEB-APP-FOLDER%/resources folder
+                        so that final path would be %WEB-APP-FOLDER%/resources/mirage-layout/. Please refer to demo app or maven project of the demo app as the reference.</p>
+
+                    <h1>GuestPreferences Bean</h1>
+                    <p>GuestPreferences is a simple session scoped bean to keep the user customizations of the layout, template xhtml files
+                    refer to this bean to dynamically change their behavior such as menu mode or theme. This bean is not necessary to run the Mirage
+                    and only used for demo purposes. For example template.xhtml includes layout color depending on a user preference using an EL expression.</p>
+<pre>
+&lt;h:outputStylesheet name="css/layout-\#{guestPreferences.layout}.css" library="mirage-layout" /&gt;
+</pre>
+                    <p>In your application, you may also need a similar bean to make the template dynamic or choose a static color with;</p>
+
+<pre>
+&lt;h:outputStylesheet name="css/layout-blue.css" library="mirage-layout" /&gt;
+</pre>
+
+                    <h1>Component Theme</h1>
+                    <p>Mirage provides 24 PrimeFaces themes out of the box featuring light and dark alternatives. Setup of a theme simple as including the theme jar in your classpath and defining primefaces.THEME context parameter in web.xml such as "primefaces-mirage-blue-light". Full list of
+                    available themes are;</p>
+
+                    <ul>
+                        <li>primefaces-mirage-blue-light</li>
+                        <li>primefaces-mirage-blue-dark</li>
+                        <li>primefaces-mirage-brown-light</li>
+                        <li>primefaces-mirage-brown-dark</li>
+                        <li>primefaces-mirage-cyan-light</li>
+                        <li>primefaces-mirage-cyan-dark</li>
+                        <li>primefaces-mirage-green-light</li>
+                        <li>primefaces-mirage-green-dark</li>
+                        <li>primefaces-mirage-indigo-light</li>
+                        <li>primefaces-mirage-indigo-dark</li>
+                        <li>primefaces-mirage-lime-light</li>
+                        <li>primefaces-mirage-lime-dark</li>
+                        <li>primefaces-mirage-magenta-light</li>
+                        <li>primefaces-mirage-magenta-dark</li>
+                        <li>primefaces-mirage-orange-light</li>
+                        <li>primefaces-mirage-orange-dark</li>
+                        <li>primefaces-mirage-purple-light</li>
+                        <li>primefaces-mirage-purple-dark</li>
+                        <li>primefaces-mirage-red-light</li>
+                        <li>primefaces-mirage-red-dark</li>
+                        <li>primefaces-mirage-teal-light</li>
+                        <li>primefaces-mirage-teal-dark</li>
+                        <li>primefaces-mirage-yellow-light</li>
+                        <li>primefaces-mirage-yellow-dark</li>
+                    </ul>
+
+                    <p>A custom theme can be developed by the following steps.</p>
+                    <ul>
+                        <li>Create a custom theme folder such as primefaces-mirage-myown under webapp/resources and place an empty theme.scss inside.</li>
+                        <li>Copy the sass folder from the distribution to webapp/resources.</li>
+                        <li>Define the variables listed below and import the <i>/sass/theme/_theme.scss</i> file.</li>
+                        <li>Build the scss to generate css.</li>
+                        <li>Set primefaces.THEME context parameter as <i>mirage-myown</i></li>
+                        <li>Either bundle the css in a jar file or serve from webapp/resources/primefaces-mirage-myown folder</li>
+                    </ul>
+
+                    <p>Here are the variables required to create a theme based on a light color scheme.</p>
+
+<pre>
+//main
+$primaryColor:#5E81AC;
+$primaryTextColor:#ffffff;
+
+//highlight
+$highlightBgColor:$primaryColor;
+$highlightTextColor:$primaryTextColor;
+
+//input
+$inputFocusBorderColor:#9EB3CD;
+$inputFocusBorderShadowColor:rgba(22,107,212,.25);
+
+//primary button
+$primaryButtonTextColor:#ffffff;
+$primaryButtonBgColor:#5E81AC;
+$primaryButtonBorderColor:#5E81AC;
+$primaryButtonHoverBgColor:#466489;
+$primaryButtonHoverBorderColor:#466489;
+$primaryButtonActiveBgColor:#263951;
+$primaryButtonActiveBorderColor:#263951;
+$primaryButtonFocusBorderShadow:rgba(22,107,212,.5);
+
+@import '../sass/variables/_theme_light';
+@import '../sass/theme/_theme';
+</pre>
+
+                    <p>Dark alternative needs to import the _theme_dark file instead.</p>
+
+<pre>
+//main
+$primaryColor:#5E81AC;
+$primaryTextColor:#ffffff;
+
+//highlight
+$highlightBgColor:$primaryColor;
+$highlightTextColor:$primaryTextColor;
+
+//input
+$inputFocusBorderColor:#9EB3CD;
+$inputFocusBorderShadowColor:rgba(22,107,212,.25);
+
+//primary button
+$primaryButtonTextColor:#ffffff;
+$primaryButtonBgColor:#5E81AC;
+$primaryButtonBorderColor:#5E81AC;
+$primaryButtonHoverBgColor:#466489;
+$primaryButtonHoverBorderColor:#466489;
+$primaryButtonActiveBgColor:#263951;
+$primaryButtonActiveBorderColor:#263951;
+$primaryButtonFocusBorderShadow:rgba(22,107,212,.5);
+
+@import '../sass/variables/_theme_dark';
+@import '../sass/theme/_theme';
+</pre>
+
+                    <p> An example sass command to compile the css would be;</p>
+
+<pre>
+sass src/main/webapp/resources/primefaces-mirage-myown/theme.scss src/main/webapp/resources/primefaces-mirage-myown/theme.css  --sourcemap=none
+</pre>
+
+                    <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
+                    so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
+<pre>
+sass -w src/main/webapp/resources/ --sourcemap=none
+</pre>
+
+                    <h1>Layout Theme</h1>
+                    <p>There are 24 layout colors in total with light and dark alternatives. The primary colors Configuring a layout color is easy as
+                    adding the css file to the template.xhtml where the choice can be left to the user with an EL expression.</p>
+<pre>
+&lt;h:outputStylesheet name="css/layout-\#{guestPreferences.layout}.css" library="mirage-layout" /&gt;
+</pre>
+
+                    <p>Full list of available layout themes are.</p>
+
+                    <ul>
+                        <li>layout-blue-light</li>
+                        <li>layout-blue-dark</li>
+                        <li>layout-brown-light</li>
+                        <li>layout-brown-dark</li>
+                        <li>layout-cyan-light</li>
+                        <li>layout-cyan-dark</li>
+                        <li>layout-green-light</li>
+                        <li>layout-green-dark</li>
+                        <li>layout-indigo-light</li>
+                        <li>layout-indigo-dark</li>
+                        <li>layout-lime-light</li>
+                        <li>layout-lime-dark</li>
+                        <li>layout-magenta-light</li>
+                        <li>layout-magenta-dark</li>
+                        <li>layout-orange-light</li>
+                        <li>layout-orange-dark</li>
+                        <li>layout-purple-light</li>
+                        <li>layout-purple-dark</li>
+                        <li>layout-red-light</li>
+                        <li>layout-red-dark</li>
+                        <li>layout-teal-light</li>
+                        <li>layout-teal-dark</li>
+                        <li>layout-yellow-light</li>
+                        <li>layout-yellow-dark</li>
+                    </ul>
+
+                    <p>Creating a custom layout with the color scheme of your choice is similar to creating a custom theme.</p>
+                    <ul>
+                        <li>Choose a layout name such as layout-myown.</li>
+                        <li>Create an empty file named layout-myown.scss inside resources/mirage-layout/css folder.</li>
+                        <li>Copy the sass folder from the distribution to webapp/resources.</li>
+                        <li>Define the variables listed below and import the <i>/sass/layout/_layout.scss</i> file.</li>
+                        <li>Build the scss to generate css</li>
+                        <li>Serve the css by importing it using a link tag or h:outputStylesheet.</li>
+                    </ul>
+
+                    <p>Here are the variables required to create a layout.</p>
+
+<pre>
+$primaryColor:#5e81ac;
+$primaryLightColor:#809bbd;
+$primaryTextColor:#ffffff;
+
+@import '../../sass/variables/_layout_light';
+@import '../../sass/layout/_layout';
+</pre>
+
+                    <p>Dark alternative needs to import the _theme_dark file instead.</p>
+<pre>
+$primaryColor:#5e81ac;
+$primaryLightColor:#809bbd;
+$primaryTextColor:#ffffff;
+
+@import '../../sass/variables/_layout_dark';
+@import '../../sass/layout/_layout';
+</pre>
+                    
+                    <h1>SASS Variables</h1>
+                    <p>In case you'd like to customize common variables, the _common.scss under sass variables folder is where the core variables (e.g. font size, paddings) for the layout are defined.</p>
+<pre>
+//general
+$fontSize:14px;
+$fontFamily:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$transitionDuration:.15s;
+$letterSpacing:normal;
+$borderRadius:4px;
+$mobileBreakpoint:991px;
+</pre>
+
+                    <p>_layout.scss under variables define the shared variables of the layout.</p>
+<pre>
+@import './common';
+</pre>
+
+                    <p>_layout_light.scss contains the shared variables of the layout themes with a light color scheme.</p>
+<pre>
+$bodyBgColor:#eceff4;
+$textColor:#4c566a;
+$textSecondaryColor:#9199a9;
+
+$topbarBgColor:#eceff4;
+$breadcrumbBgColor:#d8dee9;
+$contentBgColor:#ffffff;
+$contentAltBgColor:#f9fafb;
+$contentAltBorderColor:#e5e9f0;
+$dividerColor:rgba(145,153,169,0.3);
+$menuShadow:3px 0 5px 0 rgba(33, 35, 39, 0.15);
+
+@import './_layout';
+</pre>
+
+                    <p>_layout_dark.scss contains the shared variables of the layout themes with a light color scheme.</p>
+<pre>
+$bodyBgColor:#2e3440;
+$textColor:#d8dee9;
+$textSecondaryColor:#9199a9;
+
+$topbarBgColor:#2e3440;
+$breadcrumbBgColor:#20252e;
+$contentBgColor:#20252e;
+$contentAltBgColor:#2e3440;
+$contentAltBorderColor:#434c5e;
+$dividerColor:rgba(90,101,124,0.3);
+$menuShadow:3px 0 5px 0 rgba(33, 35, 39, 0.3);;
+
+@import './_layout';
+</pre>
+
+                    <p>Shared variables of the components themes are available inside the _theme.scss file.</p>
+
+<div style="max-height: 400px; overflow:hidden">
+<pre>
+@import './common';
+
+/* panels */
+$headerPadding:10px 15px;
+$contentPadding:15px;
+$contentLineHeight:1.43;
+
+/* forms */
+$inputPadding:6px 12px;
+$inputGroupAddonMinWidth:2*$fontSize;
+$checkboxWidth:20px;
+$checkboxHeight:20px;
+
+/* list items */
+$listPadding:6px 0;
+$listItemPadding:8px 20px;
+
+/* datatable */
+$datatableCellPadding:.75em;
+
+/* buttons */
+$roundedButtonBorderRadius:15px;
+
+$secondaryButtonTextColor:#ffffff;
+$secondaryButtonBgColor:#6c757d;
+$secondaryButtonBorderColor:#6c757d;
+$secondaryButtonHoverBgColor:#5a6268;
+$secondaryButtonHoverBorderColor:#545b62;
+$secondaryButtonActiveBgColor:#545b62;
+$secondaryButtonActiveBorderColor:#4e555b;
+$secondaryButtonFocusBorderShadow:rgba(130,138,145,.5);
+
+$successButtonTextColor:#ffffff;
+$successButtonBgColor:#99CE6B;
+$successButtonBorderColor:#99CE6B;
+$successButtonHoverBgColor:#75A24D;
+$successButtonHoverBorderColor:#75A24D;
+$successButtonActiveBgColor:#4F7131;
+$successButtonActiveBorderColor:#4F7131;
+$successButtonFocusBorderShadow:rgba(72,180,97,.5);
+
+$infoButtonTextColor:#ffffff;
+$infoButtonBgColor:#88C0D0;
+$infoButtonBorderColor:#88C0D0;
+$infoButtonHoverBgColor:#6CA2B1;
+$infoButtonHoverBorderColor:#6CA2B1;
+$infoButtonActiveBgColor:#467481;
+$infoButtonActiveBorderColor:#467481;
+$infoButtonFocusBorderShadow:rgba(58,176,195,.5);
+
+$warningButtonTextColor:#ffffff;
+$warningButtonBgColor:#EBCB8B;
+$warningButtonBorderColor:#EBCB8B;
+$warningButtonHoverBgColor:#D2A956;
+$warningButtonHoverBorderColor:#D2A956;
+$warningButtonActiveBgColor:#A37518;
+$warningButtonActiveBorderColor:#A37518;
+$warningButtonFocusBorderShadow:rgba(222,170,12,.5);
+
+$dangerButtonTextColor:#ffffff;
+$dangerButtonBgColor:#F28686;
+$dangerButtonBorderColor:#F28686;
+$dangerButtonHoverBgColor:#D36161;
+$dangerButtonHoverBorderColor:#D36161;
+$dangerButtonActiveBgColor:#943F3F;
+$dangerButtonActiveBorderColor:#943F3F;
+$dangerButtonFocusBorderShadow:rgba(225,83,97,.5);
+
+$darkButtonTextColor:#ffffff;
+$darkButtonBgColor:#343a40;
+$darkButtonBorderColor:#343a40;
+$darkButtonHoverBgColor:#23272b;
+$darkButtonHoverBorderColor:#1d2124;
+$darkButtonActiveBgColor:#1d2124;
+$darkButtonActiveBorderColor:#171a1d;
+$darkButtonFocusBorderShadow:rgba(82,88,93,.5);
+
+$lightButtonTextColor:#212529;
+$lightButtonBgColor:#f8f9fa;
+$lightButtonBorderColor:#f8f9fa;
+$lightButtonHoverBgColor:#e2e6ea;
+$lightButtonHoverBorderColor:#dae0e5;
+$lightButtonActiveBgColor:#dae0e5;
+$lightButtonActiveBorderColor:#d3d9df;
+$lightButtonFocusBorderShadow:rgba(216,217,219,.5);
+
+/* Messages */
+$infoMessageBgColor:#D9EAF0;
+$infoMessageBorderColor:#C3DFE7;
+$infoMessageTextColor:#467481;
+$warnMessageBgColor:#F8EED9;
+$warnMessageBorderColor:#F5E5C5;
+$warnMessageTextColor:#A37518;
+$errorMessageBgColor:#FCE1E1;
+$errorMessageBorderColor:#F8C2C2;
+$errorMessageTextColor:#943F3F;
+$fatalMessageBgColor:#999999;
+$fatalMessageBorderColor:#797979;
+$fatalMessageTextColor:#ffffff;
+
+/* rating */
+$ratingStarColor:#f790c8;
+
+/* keyboard */
+$keyboardShiftColor:#3e9018;
+$keyboardBackColor:#007bff;
+$keyboardClearColor:#f790c8;
+$keyboardCloseColor:#9189fd;
+
+/* modal */
+$modalBgColor:#000000;
+$modalBgOpacity:.5;
+</pre>
+</div>
+
+                    <p>_theme_light.scss contains the shared variables of the component themes with a light color scheme.</p>
+<div style="max-height: 400px; overflow:hidden">
+<pre>
+@import '../variables/_theme';
+
+/* Common */
+$textColor:#4c566a;
+$textSecondaryColor:#9199a9;
+$disabledBgColor:#eeeeee;
+$dividerColor:rgba(145,153,169,0.3);
+
+/* Icons */
+$iconFontSize:14px;
+$iconWidth:16px;
+
+/* Error */
+$errorColor:#a94442;
+
+/* Headers */
+$headerBgColor:#f5f5f5;
+$headerHoverBgColor:#dcdcdc;
+$headerHoverBorderColor:#c4c4c4;
+$headerTextColor:#292B2C;
+$headerBorderColor:#dddddd;
+$headerIconColor:#999999;
+$headerIconHoverColor:#bd9090;
+
+/* Contents */
+$contentBorderColor:#dddddd;
+$contentBgColor:#ffffff;
+
+/* Forms */
+$inputBgColor:#ffffff;
+$inputBorderColor:#cccccc;
+$inputHoverBorderColor:#cccccc;
+$inputTextColor:#495057;
+
+//groups
+$inputGroupBorderColor:#cccccc;
+$inputGroupBgColor:#e9ecef;
+$inputGroupTextColor:$textColor;
+$inputGroupIconColor:$textSecondaryColor;
+
+/* Buttons */
+$toggleButtonBgColor:#eceff4;
+$toggleButtonBorderColor:#e5e9f0;
+$toggleButtonHoverBgColor:#e5e9f0;
+$toggleButtonHoverBorderColor:#d8dee9;
+
+/* List Items */
+$listItemHoverBgColor:#f7f7f9;
+$listItemHoverTextColor:#1d1e1f;
+
+/* Overlays */
+$overlayBorderColor:#cccccc;
+
+/* Data */
+$datatableCellBorderColor:#dddddd;
+$datableEvenRowBgColor:rgba(0,0,0,.05);
+$datatableHoverBgColor:rgba(0,0,0,.075);    
+</pre>
+</div>
+
+                    <p>_theme_dark.scss contains the shared variables of the component themes with a light color scheme.</p>
+<div style="max-height: 400px; overflow:hidden">
+<pre>
+@import '../variables/_theme';
+
+/* Common */
+$textColor:#d8dee9;
+$textSecondaryColor:#9199a9;
+$disabledBgColor:#2e3440;
+$dividerColor:rgba(90,101,124,0.3);
+
+/* Icons */
+$iconFontSize:14px;
+$iconWidth:16px;
+
+/* Error */
+$errorColor:#a94442;
+
+/* Headers */
+$headerBgColor:#2e3440;
+$headerHoverBgColor:#3b4252;
+$headerHoverBorderColor:#434c5e;
+$headerTextColor:#d8dee9;
+$headerBorderColor:#434c5e;
+$headerIconColor:#d8dee9;
+$headerIconHoverColor:#d8dee9;
+
+/* Contents */
+$contentBorderColor:#434c5e;
+$contentBgColor:#20252e;
+
+/* Forms */
+$inputBgColor:#20252e;
+$inputBorderColor:#5a657c;
+$inputHoverBorderColor:#5a657c;
+$inputTextColor:#d8dee9;
+
+//groups
+$inputGroupBorderColor:#5a657c;
+$inputGroupBgColor:#2e3440;
+$inputGroupTextColor:$textColor;
+$inputGroupIconColor:$textSecondaryColor;
+
+/* Buttons */
+$toggleButtonBgColor:#5a657c;
+$toggleButtonBorderColor:#4c566a;
+$toggleButtonHoverBgColor:#4c566a;
+$toggleButtonHoverBorderColor:#434c5e;
+
+/* List Items */
+$listItemHoverBgColor:#4c566a;
+$listItemHoverTextColor:#d8dee9;
+
+/* Overlays */
+$overlayBorderColor:#434c5e;
+
+/* Data */
+$datableEvenRowBgColor:#2e3440;
+$datatableHoverBgColor:#4c566a;
+$datatableCellBorderColor:#434c5e;
+</pre>
+</div>
+
+                    <h1>Menu</h1>
+                    <p>Menu is a regular JSF component that supports PrimeFaces MenuModel API allowing both declarative and programmatic approaches.</p>
+<pre>
+xmlns:pm="http://primefaces.org/mirage"
+
+&lt;pm:menu&gt;
+&lt;/pm:menu&gt;
+</pre>
+                    <p>Menu has 3 modes; overlay and horizontal. Layout wrapper element in template.xhtml is used to define which mode to use by adding specific classes. Default
+                    is overlay and adding "layout-horizontal" enables horizontal mode.</p>
+
+                    <ul>
+                        <li>Overlay (Default): "layout-wrapper"</li>
+                        <li>Horizontal: "layout-wrapper layout-horizontal"</li>
+                    </ul>
+
+                    <p>Layout mode can be dynamic using an EL expression as well using an example bean called userPreferences.</p>
+<pre>
+&lt;div class="layout-wrapper \#{guestPreferences.horizontalMenu ? 'layout-horizontal' ? ''}"&gt;
+...
+&lt;/div&gt;
+</pre>
+
+                    <h1>Menu Themes</h1>
+                    <p>Menu theme is defined at the main container element, template below uses the default light menus. Full list of menu themes are the following, note that layout-menu- prefix needs to be added to apply the style such as layout-menu-dark.</p>
+<pre>
+&lt;div class="layout-wrapper layout-menu-dark"&gt;
+...
+&lt;/div&gt;
+</pre>
+
+                    <p>Light and Dark menus utilize the primary color of the chosen layout whereas custom menu themes listed below define their own style. Apply
+                        the following style classes for a custom menu theme.
+                    </p>
+                    <ul>
+                        <li>layout-menu-chile</li>
+                        <li>layout-menu-naples</li>
+                        <li>layout-menu-georgia</li>
+                        <li>layout-menu-infinity</li>
+                        <li>layout-menu-chicago</li>
+                        <li>layout-menu-majesty</li>
+                        <li>layout-menu-fish</li>
+                        <li>layout-menu-dawn</li>
+                        <li>layout-menu-record</li>
+                        <li>layout-menu-pool</li>
+                        <li>layout-menu-metal</li>
+                        <li>layout-menu-china</li>
+                        <li>layout-menu-table</li>
+                        <li>layout-menu-panorama</li>
+                        <li>layout-menu-barcelona</li>
+                        <li>layout-menu-underwater</li>
+                        <li>layout-menu-symmetry</li>
+                        <li>layout-menu-rain</li>
+                        <li>layout-menu-utah</li>
+                        <li>layout-menu-wave</li>
+                        <li>layout-menu-flora</li>
+                        <li>layout-menu-speed</li>
+                        <li>layout-menu-canopy</li>
+                        <li>layout-menu-sanpaolo</li>
+                        <li>layout-menu-basketball</li>
+                        <li>layout-menu-misty</li>
+                        <li>layout-menu-summit</li>
+                        <li>layout-menu-snow</li>
+                        <li>layout-menu-wall</li>
+                        <li>layout-menu-ferris</li>
+                        <li>layout-menu-ship</li>
+                        <li>layout-menu-ny</li>
+                        <li>layout-menu-cyan</li>
+                        <li>layout-menu-violet</li>
+                        <li>layout-menu-red</li>
+                        <li>layout-menu-blue</li>
+                        <li>layout-menu-porsuk</li>
+                        <li>layout-menu-pink</li>
+                        <li>layout-menu-purple</li>
+                        <li>layout-menu-orange</li>
+                    </ul>
+
+<pre>
+&lt;div class="layout-wrapper layout-menu-chile"&gt;
+...
+&lt;/div&gt;
+</pre>
+
+                    <p>Creating a custom menu theme with the color scheme of your choice required the following steps.</p>
+                    <ul>
+                        <li>Choose a menu theme such as myown.</li>
+                        <li>Create an empty file named myown.scss inside resources/sass/layout/menu/themes/ folder.</li>
+                        <li>Define the variables listed below and import the <i>/sass/layout/_layout.scss</i> file.</li>
+                        <li>Import <i>_menu_theme.scss</i> file.</li>
+                        <li>Import your file at resources/sass/layout/menu/_menu file.</li>.
+                    </ul>
+
+                    <p>Here are the variables required to create a layout.</p>
+<pre>
+.layout-menu-violet {
+    $menuBgColor:#4A4358;
+    $rootMenuitemTextColor:#ffffff;
+    $rootMenuitemIconColor:#ffffff;
+    $rootMenuitemHoverBgColor:rgba(255, 255, 255, 0.24);
+    $activeRootMenuitemBgColor:#F8C869;
+    $activeRootMenuitemTextColor:#343a40;
+    $activeRootMenuitemIconColor:#343a40;
+    $submenuBgColor:rgba(255, 255, 255, 0.12);
+    $horizontalSubmenuBgColor:#2e3440;
+    $submenuItemTextColor:#ffffff;
+    $submenuItemIconColor:#ffffff;
+    $submenuItemHoverBgColor:rgba(0, 0, 0, 0.36);
+    $activeSubmenuItemTextColor:#F8C869;
+    $activeSubmenuItemIconColor:#F8C869;
+    $appNameTextColor:#ffffff;
+    $pinBgColor:#ffffff;
+    $pinIconColor:#2e3440;
+
+    @import '../_menu_theme';
+}
+</pre>
+
+                    <p>An image can be used as the background of the menu using the menuBgImage variable.</p>
+<pre>
+    .layout-menu-ferris {
+        $menuBgColor: #262B33;
+        $menuBgImage:'ferris.jpg';
+        $horizontalMenuBgImage:'ferris-horizontal.jpg';
+        $rootMenuitemTextColor:#eceff4;
+        $rootMenuitemIconColor:#eceff4;
+        $rootMenuitemHoverBgColor:rgba(255, 255, 255, 0.24);
+        $activeRootMenuitemBgColor:#A3BE8C;
+        $activeRootMenuitemTextColor:#3b4252;
+        $activeRootMenuitemIconColor:#2e3440;
+        $submenuBgColor:rgba(255, 255, 255, 0.12);
+        $horizontalSubmenuBgColor:#2e3440;
+        $submenuItemTextColor:#eceff4;
+        $submenuItemIconColor:#eceff4;
+        $submenuItemHoverBgColor:rgba(0, 0, 0, 0.32);
+        $activeSubmenuItemTextColor:#A3BE8C;
+        $activeSubmenuItemIconColor:#A3BE8C;
+        $appNameTextColor:#ffffff;
+        $pinBgColor:#ffffff;
+        $pinIconColor:#2e3440;
+    
+        @import '../_menu_theme';
+    }
+</pre>
+
+                    <h1>Grid CSS</h1>
+                    <p>Mirage uses new <a href="https://github.com/primefaces/primeflex">PrimeFlex</a> CSS throughout the demos however you may also use other Grid Utilities of your choice as well as Mirage layout
+                        does not depend on a specific grid library.</p>
+
+                    <h1>Tips</h1>
+                    <ul>
+                        <li>Familiarity with <a href="http://sass-lang.com/">SASS</a> is required to make customizations to the layout and theme.</li>
+                        <li>Demo application war and the maven project tag are included in distribution however you don't necessarily need them to install Mirage, the actual artifacts required are the layout zip file and the theme jar.</li>
+                        <li>Sample demo application war includes the JSF libraries so it is suggested to remove them from the war file when you deploy to an appserver.</li>
+                        <li>When running the maven project, you need to build the sass with (sass --update src/main/webapp/resources/ --sourcemap=none) command.</li>
+                    </ul>
+
+                    <h1>Migration Guide</h1>
+                    <p>For seamless updates use the /sass/overrides/_layout_styles.scss, /sass/overrides/_layout_variables.scss for overriding the layout styles and /sass/overrides/_theme_styles.scss, /sass/overrides/_theme_variables.scss 
+                        for customizing the theme styles instead of changing the scss files under layout and theme files to avoid maintenance issues. Updates usually require updating the layout and theme folders so your changes won't get effected during updates since they are kept in external files.</p>
+                    
+                    <p>1.0.1 to 1.0.2</p>
+                    <ul>
+                        <li>Update layout.js and layout css files</li>
+                        <li>Replace theme jar with new jar</li>
+                    </ul>
+                    <p>1.0.0 to 1.0.1</p>
+                    <ul>
+                        <li>Update layout and theme css files.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

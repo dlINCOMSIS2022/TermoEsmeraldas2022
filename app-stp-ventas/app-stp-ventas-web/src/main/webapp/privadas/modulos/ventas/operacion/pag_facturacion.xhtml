@@ -1,0 +1,942 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Facturar</ui:define>
+	<ui:define name="viewname">
+		<li>Operación</li>
+		<li><i class="fa fa-angle-right"></i></li>
+		<li><p:link>Facturar</p:link></li>
+	</ui:define>
+
+	<ui:define name="head">
+		<h:outputScript name="chartjs/chart.js" library="demo" />
+		<script type="text/javascript">
+            $(function () {
+                var newsrow = $('.news-row');
+                $('.point').on('click', function (e) {
+                    var point = $(this);
+
+                    point.siblings('.active-point').removeClass('active-point');
+                    point.addClass('active-point');
+
+                    if (point.hasClass('point-1')) {
+                        newsrow.css('transform', 'translate3d(0, 0, 0)');
+                    } else if (point.hasClass('point-2')) {
+                        newsrow.css('transform', 'translate3d(-100%, 0, 0)');
+                    } else if (point.hasClass('point-3')) {
+                        newsrow.css('transform', 'translate3d(-200%, 0, 0)');
+                    }
+
+                    e.preventDefault();
+                });
+
+                var ctx = document.getElementById("dashboard-chart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                            label: 'Sapphire',
+                            data: [1, 2, 5, 3, 12, 7, 15],
+                            borderColor: [
+                                '#45b0d5'
+                            ],
+                            borderWidth: 3,
+                            fill: false
+                        },
+                        {
+                            label: 'Roma',
+                            data: [3, 7, 2, 17, 15, 13, 19],
+                            borderColor: [
+                                '#d08770'
+                            ],
+                            borderWidth: 3,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        fontFamily: "'Candara', 'Calibri', 'Courier', 'serif'",
+                        hover: {
+                            mode: 'index'
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    fontColor: '#9199a9'
+                                }
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    fontColor: '#9199a9'
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            labels: {
+                                fontColor: '#9199a9'
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+
+		<style type="text/css">
+.ui-steps .ui-steps-item {
+	width: 20%;
+}
+
+.card h1:first-child {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.card {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background: #ffffff;
+	padding: 5px !important;
+}
+
+.ui-outputlabel {
+	display: block;
+	margin: 1em 0
+}
+
+.ui-selectonemenu, .ui-autocomplete {
+	margin-bottom: 1em;
+}
+
+.ui-slider {
+	margin-bottom: 2em;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 12px;
+}
+
+body .ui-widget-content {
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	font-size: 10px;
+}
+
+body .ui-inputfield {
+	font-size: 10px;
+}
+
+body .ui-datatable .ui-datatable-data>tr td {
+	padding: 0.2em;
+	text-align: center;
+}
+
+body .ui-widget-header {
+	font-size: 10px;
+}
+</style>
+
+		<script>
+function ChangeCase(elem) {
+		elem.value = elem.value.toUpperCase();
+	}
+</script>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="formFacturacion">
+
+			<p:messages globalOnly="false" id="mensajes" closable="true"
+				rendered="#{beanProcesoFacturacion.lPresentarMensaje}"></p:messages>
+
+			<div class="p-grid ui-fluid">
+				<div class="p-col-12">
+					<div class="card">
+						<h1>Proceso - Facturación</h1>
+						<p:steps activeIndex="#{beanProcesoFacturacion.lIndiceActivo}"
+							readonly="false">
+							<p:menuitem value="Empresa" id="paso1" />
+							<p:menuitem value="Cliente" id="paso2"
+								actionListener="#{beanProcesoFacturacion.irCliente()}"
+								process="@form" update="@form" />
+							<p:menuitem value="Productos" id="paso3"
+								actionListener="#{beanProcesoFacturacion.irProd()}"
+								process="@form" update="@form" />
+							<p:menuitem value="Pago" id="paso4" />
+							<p:menuitem value="Confirmación" id="paso5" />
+						</p:steps>
+					</div>
+				</div>
+			</div>
+
+			<p:outputPanel
+				rendered="#{  beanProcesoFacturacion.entidadRegistrar.estadoProceso != 'FI'}">
+
+				<div class="p-grid ui-fluid">
+					<div class="p-col-12 p-lg-5">
+						<div class="p-grid">
+							<div class="p-col-12">
+								<p:outputPanel id="datos_empresa"
+									rendered="#{beanProcesoFacturacion.paso1}">
+									<div class="card card-w-title">
+										<h1>Datos Empresa</h1>
+										<div class="p-grid">
+											<div class="p-col-12 p-md-6">
+
+												<p:selectOneMenu id="Empresa"
+													value="#{beanProcesoFacturacion.idEmpresSel}"
+													label="Empresa">
+													<f:selectItems
+														value="#{beanProcesoFacturacion.lListaEmpresas}"
+														var="empre" itemLabel="#{empre.lRazonSocial}"
+														itemValue="#{empre.id}"></f:selectItems>
+													<p:ajax event="change" update="mensajes, datos_empresa"
+														process="@this"
+														listener="#{beanProcesoFacturacion.establimientosEmpresa}" />
+
+												</p:selectOneMenu>
+											</div>
+											<div class="p-col-12 p-md-6">
+												<p:selectOneMenu id="Sucursales"
+													value="#{beanProcesoFacturacion.idSucSel}"
+													label="Establecimiento">
+													<f:selectItems
+														value="#{beanProcesoFacturacion.lListaEstablecimiento }"
+														var="estble" itemLabel="#{estble.nombre}"
+														itemValue="#{estble.id}"></f:selectItems>
+
+													<p:ajax event="change" update="mensajes, datos_empresa"
+														process="@this"
+														listener="#{beanProcesoFacturacion.puntosEmisionEmpresa}" />
+												</p:selectOneMenu>
+											</div>
+											<div class="p-col-12 p-md-6">
+												<p:selectOneMenu id="Emision"
+													value="#{beanProcesoFacturacion.idPtoSel}">
+													<f:selectItems
+														value="#{beanProcesoFacturacion.lListaPuntosEmision}"
+														var="emisi" itemLabel="#{emisi.nombre}"
+														itemValue="#{emisi.id}"></f:selectItems>
+
+													<p:ajax event="change" update="mensajes, datos_empresa"
+														process="@this"
+														listener="#{beanProcesoFacturacion.secuenciaEmisionEmpresa}" />
+
+												</p:selectOneMenu>
+											</div>
+											<div class="p-col-12 p-md-3">
+												<h:outputText value="Secuencia Factura:" />
+											</div>
+											<div class="p-col-12 p-md-3">
+												<p:inputText readonly="true"
+													value="#{beanProcesoFacturacion.lPuntoEmisionSelecionado.secuenciaFactura}"
+													id="txtSec"></p:inputText>
+											</div>
+										</div>
+										<div class="p-col-12" style="text-align: center">
+
+											<p:commandButton value="Continuar"
+												style="margin-bottom:10px;"
+												rendered="#{not empty beanProcesoFacturacion.lPuntoEmisionSelecionado.secuenciaFactura}"
+												id="continuar" styleClass="ui-button-rounded"
+												process="datos_empresa" update="@form" partialSubmit="true"
+												actionListener="#{beanProcesoFacturacion.procesoIncialFacturacion}">
+
+												<p:confirm header="Confirmación"
+													message="Ésta acción tomará una secuencia de facturación, desea continuar?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+										</div>
+									</div>
+								</p:outputPanel>
+								<p:outputPanel id="datosCliente"
+									rendered="#{beanProcesoFacturacion.paso2}">
+
+									<div class="card card-w-title">
+										<h1>Datos Cliente</h1>
+										<div class="p-grid">
+											<div class="p-col-12 p-md-6">
+												<p:inputText id="txtCedula"
+													value="#{beanProcesoFacturacion.lIdentificacionCliente}">
+													<p:ajax event="blur"
+														update="@([id$=dialogoMantenimientoCliente])"
+														process="@this" partialSubmit="true"
+														listener="#{beanProcesoFacturacion.buscarCliente}"
+														oncomplete="PF('dialogoMantenimientoCliente').show();" />
+												</p:inputText>
+											</div>
+										</div>
+									</div>
+
+								</p:outputPanel>
+
+								<p:outputPanel id="productos"
+									rendered="#{beanProcesoFacturacion.paso3}">
+
+									<div class="p-grid">
+										<div class="p-col-12">
+											<div class="card card-w-title">
+												<h1>Productos</h1>
+
+												<p:dataTable
+													value="#{beanProcesoFacturacion.lListaProductosEmpresa}"
+													var="dato" emptyMessage="No hay datos" reflow="true"
+													id="tablaDatos" widgetVar="tablaDatos" scrollable="true"
+													scrollHeight="300" selectionMode="single"
+													selection="#{beanProcesoFacturacion.lProducto}"
+													rowKey="#{dato.id}">
+
+													<p:ajax event="rowSelect"
+														listener="#{beanProcesoFacturacion.seleccionarProducto}"
+														update="@([id$=dialogoMantenimiento])"
+														oncomplete="PF('dialogoMantenimiento').show();" />
+
+													<p:column headerText="Imagen" footerText="Imagen">
+
+														<p:graphicImage
+															rendered="#{dato.imagenReferencia == null}"
+															name="images/productoDefault.png" library="mirage-layout"
+															value="#"
+															style="outline: aliceblue; width: 33px; height: 33px; vertical-align: top; border-radius: 50%;" />
+														<o:graphicImage
+															rendered="#{dato.imagenReferencia != null}"
+															style="outline: aliceblue; width: 33px; height: 33px; vertical-align: top; border-radius: 50%;"
+															value="#{dato.imagenReferencia}" dataURI="true"
+															id="imagenAvatar" />
+
+														<p:overlayPanel id="imagePanel" for="imagenAvatar"
+															hideEffect="fade"
+															rendered="#{dato.imagenReferencia != null}">
+															<o:graphicImage
+																style="outline: aliceblue; width: 200px; height: 200px; vertical-align: top; border-radius: 10%;"
+																value="#{dato.imagenReferencia}" dataURI="true"
+																rendered="#{dato.imagenReferencia != null}" />
+														</p:overlayPanel>
+
+													</p:column>
+
+
+													<p:column filterBy="#{dato.lNombre}"
+														filterMatchMode="contains" footerText="Descripción">
+														<h:outputText value="#{dato.lNombre}" />
+													</p:column>
+
+													<p:column filterBy="#{dato.lCodigoProducto}"
+														filterMatchMode="contains" footerText="Código">
+														<h:outputText value="#{dato.lCodigoProducto}" />
+													</p:column>
+
+												</p:dataTable>
+											</div>
+
+										</div>
+										<div class="p-col-12">
+											<p:commandButton value="Continuar"
+												style="margin-bottom:10px;"
+												rendered="#{not empty beanProcesoFacturacion.entidadRegistrar.lListaDetalles}"
+												id="continuarFormaPago" styleClass="ui-button-rounded"
+												process="@this" update="@form" partialSubmit="true"
+												actionListener="#{beanProcesoFacturacion.procesoFinalizarDatosProductos}">
+											</p:commandButton>
+
+
+
+										</div>
+									</div>
+								</p:outputPanel>
+
+								<p:outputPanel id="pagos"
+									rendered="#{beanProcesoFacturacion.paso4}">
+
+									<div class="card card-w-title">
+										<h1>Seleccione la forma pago</h1>
+
+										<div class="p-grid">
+											<div class="p-col-12 p-md-8">
+												<h:outputText value="Forma Pago"
+													style="font-size: 10px; font-weight: bold;" />
+												<p:selectOneMenu id="formaPago" required="true"
+													label="FormaPago"
+													value="#{beanProcesoFacturacion.lIdFormaPago}">
+													<f:selectItems
+														value="#{beanProcesoFacturacion.lFormasPago}" var="tipo"
+														itemLabel="#{tipo.descripcion}" itemValue="#{tipo.codigo}"></f:selectItems>
+												</p:selectOneMenu>
+											</div>
+
+											<div class="p-col-12 p-md-4">
+												<h:outputText value="Valor"
+													style="font-size: 10px; font-weight: bold;" />
+												<p:inputText id="valor"
+													value="#{beanProcesoFacturacion.lFormaPagoFactura.lTotal}"></p:inputText>
+											</div>
+
+											<div class="p-col-12 p-md-4">
+												<h:outputText value="Unidad de Tiempo"
+													style="font-size: 10px; font-weight: bold;" />
+												<p:selectOneMenu id="UnidadTiempo" required="true"
+													label="UnidadTiempo"
+													value="#{beanProcesoFacturacion.lFormaPagoFactura.unidadTiempo}">
+													<f:selectItem itemLabel="DIAS" itemValue="Dias" />
+													<f:selectItem itemLabel="MESES" itemValue="Meses" />
+													<f:selectItem itemLabel="AÑOS" itemValue="Años" />
+												</p:selectOneMenu>
+											</div>
+
+											<div class="p-col-12 p-md-4">
+												<h:outputText value="Plazo"
+													style="font-size: 10px; font-weight: bold;" />
+												<p:inputText id="plazo"
+													value="#{beanProcesoFacturacion.lFormaPagoFactura.plazo}"></p:inputText>
+											</div>
+
+											<div class="p-col-12 p-md-4">
+												<h:outputText value="."
+													style="font-size: 10px; font-weight: bold;" />
+												<p:commandButton value="Agregar" process="pagos"
+													update="@form" partialSubmit="true"
+													actionListener="#{beanProcesoFacturacion.procesoAgregar}"></p:commandButton>
+											</div>
+										</div>
+
+										<div class="p-col-12 p-md-12">
+											<p:dataTable
+												value="#{beanProcesoFacturacion.entidadRegistrar.lFormaPagos}"
+												var="dato" emptyMessage="No hay datos" reflow="true"
+												id="idFormaPago" widgetVar="idFormaPago" scrollable="true"
+												scrollHeight="100">
+
+												<p:column headerText="Forma Pago">
+													<h:outputText value="#{dato.lFormaPago.descripcion}"
+														style="word-wrap: break-word;" />
+												</p:column>
+
+												<p:column headerText="Valor">
+													<h:outputText value="#{dato.lTotal}">
+														<f:convertNumber currencySymbol="$" type="currency" />
+													</h:outputText>
+												</p:column>
+
+												<p:column headerText="Plazo">
+													<h:outputText value="#{dato.plazo}" />
+												</p:column>
+
+												<p:column headerText="Unidad Tiempo">
+													<h:outputText value="#{dato.unidadTiempo}" />
+												</p:column>
+
+												<p:column headerText="...">
+													<p:commandLink title="Eliminar" update="@form"
+														process="@this"
+														actionListener="#{beanProcesoFacturacion.eliminarFormaPago}">
+														<i class="fa fa-close fa-1x" style="color: red"></i>
+
+														<f:attribute name="FORMA" value="#{dato}"></f:attribute>
+													</p:commandLink>
+												</p:column>
+
+
+											</p:dataTable>
+										</div>
+
+										<div class="p-col-12">
+											<p:commandButton value="Finalizar"
+												style="margin-bottom:10px;" styleClass="ui-button-rounded"
+												process="@this" update="@form" partialSubmit="true"
+												actionListener="#{beanProcesoFacturacion.procesoFinalizarFactura}"
+												rendered="#{beanProcesoFacturacion.entidadRegistrar.importeTotal ==  beanProcesoFacturacion.entidadRegistrar.totalFormaPago}">
+
+												<p:confirm header="Confirmación"
+													message="Ésta acción finalizará el proceso de factura, desea continuar?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+
+
+										</div>
+
+									</div>
+
+								</p:outputPanel>
+
+							</div>
+
+						</div>
+					</div>
+
+					<div class="p-col-12 p-lg-7">
+						<div class="p-grid">
+							<div class="p-col-12">
+								<div class="card card-w-title">
+									<div class="p-grid">
+										<div class="p-col-12 p-md-6">
+											<h:outputText value="Nombre/Razón Social"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Nombre/Razón Social "
+												value="#{beanProcesoFacturacion.entidadRegistrar.razonSocial}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-2">
+											<h:outputText value="RUC"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="RUC"
+												value="#{beanProcesoFacturacion.entidadRegistrar.ruc}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-2">
+											<h:outputText value="No Factura"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="0000-0000-00000000"
+												value="#{beanProcesoFacturacion.entidadRegistrar.estab}-#{beanProcesoFacturacion.entidadRegistrar.ptoEmi}-#{beanProcesoFacturacion.entidadRegistrar.secuencial}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-1">
+											<h:outputText value="Cont."
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Obligado Llevar Cont."
+												value="#{beanProcesoFacturacion.entidadRegistrar.obligadoContabilidad eq 'S' ? 'SI' : 'NO'}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-1">
+											<h:outputText value="Res."
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="No. Resolución "
+												value="#{beanProcesoFacturacion.entidadRegistrar.noResolucion}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-5">
+											<h:outputText value="Dirección Matriz"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Dirección Matriz"
+												value="#{beanProcesoFacturacion.entidadRegistrar.dirMatriz}"
+												readonly="true">
+											</p:inputText>
+										</div>
+										<div class="p-col-12 p-md-5">
+											<h:outputText value="Dirección Sucursal"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Dirección Sucursal"
+												value="#{beanProcesoFacturacion.entidadRegistrar.dirEstablecimiento}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-2">
+											<h:outputText value="Fecha Emision"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:calendar
+												value="#{beanProcesoFacturacion.entidadRegistrar.fechaEmision}"
+												locale="es" navigator="true" pattern="dd/MM/yyyy">
+												<p:ajax event="dateSelect" process="@this" update="@this"
+													listener="#{beanProcesoFacturacion.actualizarFechaEmision}"></p:ajax>
+											</p:calendar>
+
+										</div>
+
+										<div class="p-col-12 p-md-4">
+											<h:outputText value="Nombre / Razón Social Cliente"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Nombre / Razón Social Cliente"
+												value="#{beanProcesoFacturacion.entidadRegistrar.razonSocialComprador}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-2">
+											<h:outputText value="Ident. Cliente"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Identificacion Cliente"
+												value="#{beanProcesoFacturacion.entidadRegistrar.identificacionComprador}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+										<div class="p-col-12 p-md-6">
+											<h:outputText value="Dirección Cliente"
+												style="font-size: 10px; font-weight: bold;" />
+											<p:inputText placeholder="Dirección Cliente"
+												value="#{beanProcesoFacturacion.entidadRegistrar.direccionComprador}"
+												readonly="true">
+											</p:inputText>
+										</div>
+
+									</div>
+									<div class="p-col-12 p-md-12">
+										<p:dataTable
+											value="#{beanProcesoFacturacion.entidadRegistrar.lListaDetalles}"
+											var="dato" emptyMessage="No hay datos" reflow="true"
+											id="idDetalles" widgetVar="idDetalles" scrollable="true"
+											scrollHeight="300" selectionMode="single"
+											selection="#{beanProcesoFacturacion.lFactDetalleSeleccion}"
+											rowKey="#{dato.id}">
+
+											<p:ajax event="rowSelect"
+												listener="#{beanProcesoFacturacion.seleccionarDetalle}"
+												update="@([id$=dialogoMantenimiento])"
+												oncomplete="PF('dialogoMantenimiento').show();" />
+
+											<p:column headerText="Código">
+												<h:outputText value="#{dato.codigoPrincipal}" />
+											</p:column>
+
+											<p:column headerText="Producto">
+												<h:outputText value="#{dato.descripcion}" />
+											</p:column>
+
+											<p:column headerText="Detalle Adicional">
+												<h:outputText value="#{dato.detallesAdicionales}" />
+											</p:column>
+
+											<p:column headerText="Cantidad">
+												<h:outputText value="#{dato.cantidad}" />
+											</p:column>
+
+											<p:column headerText="P.U.">
+												<h:outputText value="#{dato.precioUnitario}">
+													<f:convertNumber currencySymbol="$" type="currency" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="SubTotal">
+												<h:outputText value="#{dato.precioTotalSinImpuesto}">
+													<f:convertNumber currencySymbol="$" type="currency" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="% IVA">
+												<h:outputText value="#{dato.lProducto.lPorcentajeIva}">
+													<f:convertNumber currencySymbol="%" type="currency" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="Precio">
+												<h:outputText value="#{dato.precioTotalConImpuesto}">
+													<f:convertNumber currencySymbol="$" type="currency" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="...">
+												<p:commandLink title="Eliminar" update="@form"
+													process="@this"
+													actionListener="#{beanProcesoFacturacion.eliminarDetalleFactura}">
+													<i class="fa fa-close fa-1x" style="color: red"></i>
+
+													<f:attribute name="DETALLE" value="#{dato}"></f:attribute>
+												</p:commandLink>
+											</p:column>
+
+										</p:dataTable>
+									</div>
+									<div class="p-grid">
+										<div class="p-col-12 p-md-4">
+											<h:outputText value="SubTotal: "
+												style="font-size: 20px; font-weight: bold;" />
+											<h:outputText
+												value="#{beanProcesoFacturacion.entidadRegistrar.totalSinImpuestos}"
+												style="font-size: 20px; font-weight: bold;">
+												<f:convertNumber currencySymbol="$" type="currency" />
+											</h:outputText>
+										</div>
+
+
+										<div class="p-col-12 p-md-4">
+											<h:outputText value="Impuesto: "
+												style="font-size: 20px; font-weight: bold;" />
+											<h:outputText
+												value="#{beanProcesoFacturacion.entidadRegistrar.totalImpuesto}"
+												style="font-size: 20px; font-weight: bold;">
+												<f:convertNumber currencySymbol="$" type="currency" />
+											</h:outputText>
+										</div>
+										<div class="p-col-12 p-md-4">
+											<h:outputText value="Total: "
+												style="font-size: 20px; font-weight: bold; " />
+											<h:outputText
+												value="#{beanProcesoFacturacion.entidadRegistrar.importeTotal}"
+												style="font-size: 20px; font-weight: bold;">
+												<f:convertNumber currencySymbol="$" type="currency" />
+											</h:outputText>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</p:outputPanel>
+
+			<p:outputPanel
+				rendered="#{beanProcesoFacturacion.entidadRegistrar.estadoProceso eq 'FI'}" id="papPDFFINAL">
+
+				<div class="p-grid ui-fluid">
+
+					<div class="p-col-12 p-lg-12">
+						<div class="card card-w-title">
+							<p:media value="/ComprobanteRideFactura" 
+								cache="false" player="pdf" width="100%" height="500px">
+							</p:media>
+						</div>
+					</div>
+				</div>
+
+			</p:outputPanel>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				closeOnEscape="true" responsive="true">
+				<p:commandButton value="Si" type="button"
+					styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+
+
+
+		</h:form>
+
+		<h:form id="formCliente">
+			<p:dialog widgetVar="dialogoMantenimientoCliente" modal="true"
+				minWidth="1024" id="dialogoMantenimientoCliente" width="55%"
+				header="Datos del Cliente" showHeader="true">
+				<p:messages globalOnly="false" id="mensajeDialogo"></p:messages>
+				<p:outputPanel id="PanelActualizar">
+					<div class="card card-w-title">
+						<div class="p-grid ui-fluid">
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Identificación *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:inputText required="true"
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.identificacionComprador}"
+									requiredMessage="Debe ingresar la identificación">
+									<f:ajax event="blur" execute="@this"
+										render="mensajeDialogo, PanelActualizar"
+										listener="#{beanProcesoFacturacion.buscarClienteActualizar}"></f:ajax>
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Tipo Identificación *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:selectOneMenu
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.tipoIdentificacionComprador}"
+									required="true" label="Tipo Identificación">
+									<f:selectItem itemValue="05" itemLabel="CEDULA" />
+									<f:selectItem itemValue="04" itemLabel="RUC" />
+									<f:selectItem itemValue="06" itemLabel="PASAPORTE" />
+									<f:selectItem itemValue="07" itemLabel="CONSUMIDOR FINAL" />
+									<f:selectItem itemValue="08"
+										itemLabel="IDENTIFICACION DELEXTERIOR" />
+								</p:selectOneMenu>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Nombre/Razón Social *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:inputText required="true"
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.razonSocialComprador}"
+									requiredMessage="Debe ingresar la razón social"
+									onblur="ChangeCase(this);">
+									<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Dirección *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:inputText required="true"
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.direccionComprador}"
+									requiredMessage="Debe ingresar la dirección"
+									onblur="ChangeCase(this);">
+									<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="EMAIL *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:inputText required="true"
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.emailsComprador}"
+									requiredMessage="Debe ingresar el email">
+									<f:validateRegex
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+									<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Celular *: " />
+							</div>
+							<div class="p-col-12 p-md-4">
+								<p:inputText required="true"
+									value="#{beanProcesoFacturacion.lClienteSeleccionado.celularComprador}"
+									requiredMessage="Debe ingresar el celular">
+									<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-12" style="text-align: center">
+								<p:commandButton value="Continuar" style="margin-bottom:10px;"
+									styleClass="ui-button-rounded" process="PanelActualizar"
+									actionListener="#{beanProcesoFacturacion.procesoCrearActualizarCliente}"
+									update="@([id$=mensajes]), PanelActualizar, @([id$=formFacturacion])"
+									oncomplete="PF('dialogoMantenimientoCliente').hide();"
+									partialSubmit="true" />
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+
+
+		<h:form id="formulario_actualizacion">
+			<p:dialog widgetVar="dialogoMantenimiento" modal="true"
+				minWidth="1024" id="dialogoMantenimiento" width="55%"
+				showHeader="true">
+				<f:facet name="header">
+					<h:outputText value="Seleccion de producto" />
+				</f:facet>
+				<p:messages globalOnly="false" id="mensajeDialogo"></p:messages>
+				<p:outputPanel id="PanelActualizar">
+
+					<div align="center">
+						<p:graphicImage
+							rendered="#{beanProcesoFacturacion.lProducto.imagenReferencia == null}"
+							name="images/productoDefault.png" library="mirage-layout"
+							value="#"
+							style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 5%;" />
+						<o:graphicImage rendered="#{dato.imagenReferencia != null}"
+							style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 5%;"
+							value="#{beanProcesoFacturacion.lProducto.imagenReferencia}"
+							dataURI="true" id="imagenAvatar" />
+					</div>
+
+					<div class="card card-w-title">
+						<div class="p-grid ui-fluid">
+
+							<div class="p-col-12 p-md-12">
+								<h:outputText value="Nombre del Producto"></h:outputText>
+								<p:inputText placeholder="Nombre Producto"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.descripcion}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-3">
+								<h:outputText value="Código Principal"></h:outputText>
+								<p:inputText placeholder="Código Principal"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.codigoPrincipal}"
+									readonly="true">
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-3">
+								<h:outputText value="Código Auxiliar"></h:outputText>
+								<p:inputText placeholder="Código Auxiliar"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.codigoAuxiliar}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-6">
+								<h:outputText value="Detalles Adicionales"></h:outputText>
+								<p:inputText placeholder="Detalles Adicionales"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.detallesAdicionales}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Cantidad"></h:outputText>
+								<p:inputNumber placeholder="cantidad"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.cantidad}"
+									decimalPlaces="0" minValue="0" maxValue="1000000"
+									required="true" requiredMessage="Debe ingresar la cantidad">
+
+									<p:ajax event="change"
+										update="totalSinImpuesto, mensajeDialogo, totalConImpuesto"
+										process="@this"
+										listener="#{beanProcesoFacturacion.calcularSubtotal}" />
+
+								</p:inputNumber>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Precio Unitario"></h:outputText>
+								<p:inputText placeholder="IVA"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.precioUnitario}"
+									readonly="true">
+								</p:inputText>
+							</div>
+							<div class="p-col-12 p-md-2">
+								<h:outputText value="Porcentaje IVA"></h:outputText>
+								<p:inputText placeholder="IVA"
+									value="#{beanProcesoFacturacion.lProducto.lPorcentajeIva}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-3">
+								<h:outputText value="Total sin impuestos"></h:outputText>
+								<p:inputText placeholder="Total sin impuestos"
+									id="totalSinImpuesto"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.precioTotalSinImpuesto}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-3">
+								<h:outputText value="Total con impuestos"></h:outputText>
+								<p:inputText placeholder="Total sin impuestos"
+									id="totalConImpuesto"
+									value="#{beanProcesoFacturacion.lFactDetalleActual.precioTotalConImpuesto}"
+									readonly="true">
+								</p:inputText>
+							</div>
+
+							<div class="p-col-12 p-md-12" style="text-align: center">
+								<p:commandButton value="Actualizar/Registrar"
+									style="margin-bottom:10px;" styleClass="ui-button-rounded"
+									actionListener="#{beanProcesoFacturacion.guardarActualizarDetalle}"
+									process="PanelActualizar"
+									update="@([id$=mensajes]), PanelActualizar, @([id$=idDetalles]),  @([id$=formFacturacion]), @([id$=continuarFormaPago])"
+									oncomplete="PF('dialogoMantenimiento').hide();"
+									partialSubmit="true" />
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>

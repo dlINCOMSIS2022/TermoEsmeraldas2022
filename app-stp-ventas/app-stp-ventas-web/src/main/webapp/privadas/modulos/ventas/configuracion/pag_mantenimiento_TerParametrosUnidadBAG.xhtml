@@ -1,0 +1,716 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerParametrosUnidadBT.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerParametrosUnidadBT.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+<div class="p-col-12 p-md-3">
+<h:outputText value="Dato Id"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Dato Id"
+value="#{beanTerParametrosUnidadBT.entidadRegistrar.iddato}"
+onblur="ChangeCase(this);" required="true"
+requiredMessage="Debe ingresar valor iddato">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div>
+<div class="p-col-12 p-md-3">
+<h:outputText value="Potencia Activa"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Potencia Activa"
+value="#{beanTerParametrosUnidadBT.entidadRegistrar.potencia_activa}"
+onblur="ChangeCase(this);" required="true"
+requiredMessage="Debe ingresar valor potencia activa">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia Reactiva"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia Reactiva"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.potencia_reactiva}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor potencia reactiva">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje Generador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje Generador"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.voltaje_generador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor voltaje generador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion de Vapor SH"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion de Vapor SH"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_de_vapor_sh}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion de Vapor SH">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura Vapor SH"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura Vapor SH"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.temperatura_vapor_rh}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura Vapor SH">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Vapor Camara Rueda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Vapor Camara Rueda"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_vapor_camara_rueda}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Vapor Camara Rueda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura Vapor Camara Rueda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura Vapor Camara Rueda"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_vapor_camara_rueda}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura Vapor Camara Rueda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura Metal Camara Rueda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura Metal Camara Rueda"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_metal_camara_rueda}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura Metal Camara Rueda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Pres. Vap. Vlv Toma Derecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Pres. Vap. Vlv Toma Derecha"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvtd}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Pres. Vap. Vlv Toma Derecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Pres. Vap. Vlv Toma Izquierda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Pres. Vap. Vlv Toma Izquierda"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvti}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Pres. Vap. Vlv Toma Izquierda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Pres. Vap. Vlv Intercep Derecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Pres. Vap. Vlv Intercep Derecha"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvid}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Pres. Vap. Vlv Intercep Derecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Pres. Vap. Vlv Intercep Izquierda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Pres. Vap. Vlv Intercep Izquierda"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvii}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Pres. Vap. Vlv Intercep Izquierda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vacio del Condensador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vacio del Condensador"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.vacio_del_condensador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vacio del Condensador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="P. Bomba Aceite Principal"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="P. Bomba Aceite Principal"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.p_bomba_aceite_principal}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor P. Bomba Aceite Principal">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="P. Lubricacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="P. Lubricacion"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_lubricacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor P. Lubricacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="P. Impeller"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="P. Impeller"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_impeller}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor P. Impeller">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Condensador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Condensador"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.nivel_condensador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Condensador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion de H2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion de H2"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_h2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion de H2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aceite Sello Anterior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aceite Sello Anterior"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_ac_sello_anterior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aceite Sello Anterior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aceite Sello Posterior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aceite Sello Posterior"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_ac_sello_posterior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aceite Sello Posterior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="T descarga al Condensador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="T descarga al Condensador"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_desc_condensador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor T descarga al Condensador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Vapor de Sello"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Vapor de Sello"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.p_vapor_de_sello}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Vapor de Sello">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura Vapor de Sello"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura Vapor de Sello"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_vapor_de_seloo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Vapor de Sello">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+    </div>
+
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerParametrosUnidadBT.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerParametrosUnidadBT.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerParametrosUnidadBT.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerParametrosUnidadBT.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Potencia Activa">
+<h:outputText value="#{dato.potencia_activa}" />
+</p:column>
+<p:column headerText="Potencia Reactiva">
+<h:outputText value="#{dato.potencia_reactiva}" />
+</p:column>
+<p:column headerText="Voltaje Generador">
+<h:outputText value="#{dato.voltaje_generador}" />
+</p:column>
+<p:column headerText="Presion de Vapor SH">
+<h:outputText value="#{dato.presion_de_vapor_sh}" />
+</p:column>
+<p:column headerText="Temperatura Vapor SH">
+<h:outputText value="#{dato.temperatura_vapor_rh}" />
+</p:column>
+<p:column headerText="Presion Vapor Camara Rueda">
+<h:outputText value="#{dato.presion_vapor_camara_rueda}" />
+</p:column>
+<p:column headerText="Temp Vap Camara Rueda">
+<h:outputText value="#{dato.temp_vapor_camara_rueda}" />
+</p:column>
+<p:column headerText="Temp Metal Camara Rueba">
+<h:outputText value="#{dato.temp_metal_camara_rueda}" />
+</p:column>
+<p:column headerText="Pres Vap Vlv Toma Derecha">
+<h:outputText value="#{dato.pvtd}" />
+</p:column>
+<p:column headerText="Pres Vap Vlv Toma Izquierda">
+<h:outputText value="#{dato.pvti}" />
+</p:column>
+<p:column headerText="Pres Vap Vlv Intercep Derecha">
+<h:outputText value="#{dato.pvid}" />
+</p:column>
+<p:column headerText="Pres Vap Vlv Intercep Izquierda">
+<h:outputText value="#{dato.pvii}" />
+</p:column>
+<p:column headerText="Vacio del Condensador">
+<h:outputText value="#{dato.vacio_del_condensador}" />
+</p:column>
+<p:column headerText="P Bomba Aceite Principal">
+<h:outputText value="#{dato.p_bomba_aceite_principal}" />
+</p:column>
+<p:column headerText="P Lubricacion">
+<h:outputText value="#{dato.presion_lubricacion}" />
+</p:column>
+<p:column headerText="P Impeller">
+<h:outputText value="#{dato.presion_impeller}" />
+</p:column>
+<p:column headerText="Nivel Condensador">
+<h:outputText value="#{dato.nivel_condensador}" />
+</p:column>
+<p:column headerText="Presion de H2">
+<h:outputText value="#{dato.presion_h2}" />
+</p:column>
+<p:column headerText="Presion Aceite Sello Anterior">
+<h:outputText value="#{dato.presion_ac_sello_anterior}" />
+</p:column>
+<p:column headerText="Presion Aceite Sello Posterior">
+<h:outputText value="#{dato.presion_ac_sello_posterior}" />
+</p:column>
+<p:column headerText="T descarga al Condensador">
+<h:outputText value="#{dato.presion_desc_condensador}" />
+</p:column>
+<p:column headerText="Presion Vapor de Sello">
+<h:outputText value="#{dato.p_vapor_de_sello}" />
+</p:column>
+<p:column headerText="Temperatura Vapor de Sello">
+<h:outputText value="#{dato.temp_vapor_de_seloo}" />
+</p:column>
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerParametrosUnidadBT.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerParametrosUnidadBT.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Fecha"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Fecha"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.fecha}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Fecha">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    <div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+    </div>
+    <div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia Activa"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia Activa"
+    value="#{beanTerParametrosUnidadBT.entidadRegistrar.potencia_activa}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor potencia activa">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Potencia Reactiva"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Potencia Reactiva"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.potencia_reactiva}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor potencia reactiva">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Voltaje Generador"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Voltaje Generador"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.voltaje_generador}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor voltaje generador">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion de Vapor SH"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion de Vapor SH"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_de_vapor_sh}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion de Vapor SH">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Temperatura Vapor SH"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Temperatura Vapor SH"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.temperatura_vapor_rh}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Temperatura Vapor SH">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion Vapor Camara Rueda"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion Vapor Camara Rueda"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_vapor_camara_rueda}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Vapor Camara Rueda">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Temperatura Vapor Camara Rueda"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Temperatura Vapor Camara Rueda"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_vapor_camara_rueda}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Temperatura Vapor Camara Rueda">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Temperatura Metal Camara Rueda"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Temperatura Metal Camara Rueda"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_metal_camara_rueda}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Temperatura Metal Camara Rueda">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Pres. Vap. Vlv Toma Derecha"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Pres. Vap. Vlv Toma Derecha"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvtd}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Pres. Vap. Vlv Toma Derecha">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Pres. Vap. Vlv Toma Izquierda"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Pres. Vap. Vlv Toma Izquierda"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvti}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Pres. Vap. Vlv Toma Izquierda">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Pres. Vap. Vlv Intercep Derecha"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Pres. Vap. Vlv Intercep Derecha"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvid}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Pres. Vap. Vlv Intercep Derecha">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Pres. Vap. Vlv Intercep Izquierda"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Pres. Vap. Vlv Intercep Izquierda"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.pvii}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Pres. Vap. Vlv Intercep Izquierda">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Vacio del Condensador"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Vacio del Condensador"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.vacio_del_condensador}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Vacio del Condensador">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="P. Bomba Aceite Principal"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="P. Bomba Aceite Principal"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.p_bomba_aceite_principal}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor P. Bomba Aceite Principal">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="P. Lubricacion"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="P. Lubricacion"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_lubricacion}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor P. Lubricacion">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="P. Impeller"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="P. Impeller"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_impeller}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor P. Impeller">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Nivel Condensador"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Nivel Condensador"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.nivel_condensador}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Nivel Condensador">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion de H2"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion de H2"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_h2}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion de H2">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion Aceite Sello Anterior"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion Aceite Sello Anterior"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_ac_sello_anterior}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Aceite Sello Anterior">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion Aceite Sello Posterior"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion Aceite Sello Posterior"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_ac_sello_posterior}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Aceite Sello Posterior">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="T descarga al Condensador"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="T descarga al Condensador"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.presion_desc_condensador}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor T descarga al Condensador">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion Vapor de Sello"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion Vapor de Sello"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.p_vapor_de_sello}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Vapor de Sello">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Temperatura Vapor de Sello"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Temperatura Vapor de Sello"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.temp_vapor_de_seloo}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Vapor de Sello">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Turno"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Turno"
+        value="#{beanTerParametrosUnidadBT.entidadRegistrar.turno}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Turno">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+        </div>
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerParametrosUnidadBT.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerParametrosUnidadBT.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

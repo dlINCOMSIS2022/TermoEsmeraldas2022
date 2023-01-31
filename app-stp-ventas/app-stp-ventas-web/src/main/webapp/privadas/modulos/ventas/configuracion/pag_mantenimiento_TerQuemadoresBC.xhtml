@@ -1,0 +1,608 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerQuemadoresBC.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerQuemadoresBC.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="IdRegistro"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="IdRegistro"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.idregistro}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor IdRegistro">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerQuemadoresBC.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerQuemadoresBC.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerQuemadoresBC.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerQuemadoresBC.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+
+<p:column headerText="IdRegistro">
+<h:outputText value="#{dato.idregistro}" />
+</p:column>
+
+<p:column headerText="Fuel 1A">
+<h:outputText value="#{dato.fuel_1a}" />
+</p:column>
+
+<p:column headerText="Fuel 1B">
+<h:outputText value="#{dato.fuel_1b}" />
+</p:column>
+
+<p:column headerText="Fuel 1C">
+<h:outputText value="#{dato.fuel_1c}" />
+</p:column>
+
+<p:column headerText="Fuel 1D">
+<h:outputText value="#{dato.fuel_1d}" />
+</p:column>
+
+<p:column headerText="Fuel 2A">
+<h:outputText value="#{dato.fuel_2a}" />
+</p:column>
+
+<p:column headerText="Fuel 2B">
+<h:outputText value="#{dato.fuel_2b}" />
+</p:column>
+
+<p:column headerText="Fuel 2C">
+<h:outputText value="#{dato.fuel_2c}" />
+</p:column>
+
+<p:column headerText="Fuel 2D">
+<h:outputText value="#{dato.fuel_2d}" />
+</p:column>
+
+<p:column headerText="Vapor 1A">
+<h:outputText value="#{dato.vapor_1a}" />
+</p:column>
+
+<p:column headerText="Vapor 1B">
+<h:outputText value="#{dato.vapor_1b}" />
+</p:column>
+
+<p:column headerText="Vapor 1C">
+<h:outputText value="#{dato.vapor_1c}" />
+</p:column>
+
+<p:column headerText="Vapor 1D">
+<h:outputText value="#{dato.vapor_1d}" />
+</p:column>
+
+<p:column headerText="Vapor 2A">
+<h:outputText value="#{dato.vapor_2a}" />
+</p:column>
+
+<p:column headerText="Vapor 2B">
+<h:outputText value="#{dato.vapor_2b}" />
+</p:column>
+
+<p:column headerText="Vapor 2C">
+<h:outputText value="#{dato.vapor_2c}" />
+</p:column>
+
+<p:column headerText="Vapor 2D">
+<h:outputText value="#{dato.vapor_2d}" />
+</p:column>
+
+
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerQuemadoresBC.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerQuemadoresBC.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="IdRegistro"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="IdRegistro"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.idregistro}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor IdRegistro">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 1D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 1D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_1d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 1D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fuel 2D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fuel 2D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.fuel_2d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fuel 2D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 1D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 1D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_1d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 1D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2A"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2A"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2a}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2A">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2B"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2B"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2b}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2B">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2C"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2C"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2c}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2C">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Vapor 2D"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Vapor 2D"
+    value="#{beanTerQuemadoresBC.entidadRegistrar.vapor_2d}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Vapor 2D">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerQuemadoresBC.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerQuemadoresBC.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

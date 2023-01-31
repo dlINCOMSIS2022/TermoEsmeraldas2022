@@ -1,0 +1,305 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerControlAsistenciaBINGT.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Guardia Normal"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Guardia Normal"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.guardia_normal}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Guardia Normal">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Guardia Adicional"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Guardia Adicional"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.guardia_adicional}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Guardia Adicional">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Puesto"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Puesto"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.puesto}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Puesto">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Operador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Operador"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.operador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Operador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo Asistencia"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo Asistencia"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.codigo_asistencia}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo Asistencia">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Comentario"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Comentario"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.comentario}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Comentario">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerControlAsistenciaBINGT.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerControlAsistenciaBINGT.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerControlAsistenciaBINGT.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerControlAsistenciaBINGT.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+<p:column headerText="Guardia Normal">
+<h:outputText value="#{dato.guardia_normal}" />
+</p:column>
+<p:column headerText="Guardia Adicional">
+<h:outputText value="#{dato.guardia_adicional}" />
+</p:column>
+<p:column headerText="Puesto">
+<h:outputText value="#{dato.puesto}" />
+</p:column>
+<p:column headerText="Operador">
+<h:outputText value="#{dato.operador}" />
+</p:column>
+<p:column headerText="Codigo Asistencia">
+<h:outputText value="#{dato.codigo_asistencia}" />
+</p:column>
+<p:column headerText="Comentario">
+<h:outputText value="#{dato.comentario}" />
+</p:column>
+
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerControlAsistenciaBINGT.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerControlAsistenciaBINGT.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Guardia Normal"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Guardia Normal"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.guardia_normal}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Guardia Normal">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Guardia Adicional"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Guardia Adicional"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.guardia_adicional}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Guardia Adicional">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Puesto"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Puesto"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.puesto}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Puesto">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Operador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Operador"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.operador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Operador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo Asistencia"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo Asistencia"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.codigo_asistencia}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo Asistencia">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Comentario"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Comentario"
+    value="#{beanTerControlAsistenciaBINGT.entidadRegistrar.comentario}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Comentario">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerControlAsistenciaBINGT.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerControlAsistenciaBINGT.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

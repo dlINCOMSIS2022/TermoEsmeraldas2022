@@ -1,0 +1,476 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerEquiposBM.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerEquiposBM.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerEquiposBM.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Numero"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Numero"
+    value="#{beanTerEquiposBM.entidadRegistrar.numero}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Numero">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo"
+    value="#{beanTerEquiposBM.entidadRegistrar.codigo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Denominacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Denominacion"
+    value="#{beanTerEquiposBM.entidadRegistrar.denominacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Denominacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Tipo Equipo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Tipo Equipo"
+    value="#{beanTerEquiposBM.entidadRegistrar.tipo_equipo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Tipo Equipo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Barra"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Barra"
+    value="#{beanTerEquiposBM.entidadRegistrar.barra}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Barra">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Celda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Celda"
+    value="#{beanTerEquiposBM.entidadRegistrar.celda}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Celda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia KVA"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia KVA"
+    value="#{beanTerEquiposBM.entidadRegistrar.potencia_kva}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Potencia KVA">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Corriente"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Corriente"
+    value="#{beanTerEquiposBM.entidadRegistrar.corriente}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Corriente">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje"
+    value="#{beanTerEquiposBM.entidadRegistrar.voltaje}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Voltaje">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje2"
+    value="#{beanTerEquiposBM.entidadRegistrar.voltaje2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Voltaje2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Ubicacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Ubicacion"
+    value="#{beanTerEquiposBM.entidadRegistrar.ubicacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Ubicacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Prot Sobrecorriente 50-51"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Prot Sobrecorriente 50-51"
+    value="#{beanTerEquiposBM.entidadRegistrar.prot_sobrecorriente_50_51}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Prot Sobrecorriente 50-51">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Falla a Tierra 64"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Falla a Tierra 64"
+    value="#{beanTerEquiposBM.entidadRegistrar.falla_a_la_tierra_64}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Falla a Tierra 64">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Sobrecarga 49"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Sobrecarga 49"
+    value="#{beanTerEquiposBM.entidadRegistrar.sobrecarga_49}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Sobrecarga 49">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Secuencia Negativa 46"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Secuencia Negativa 46"
+    value="#{beanTerEquiposBM.entidadRegistrar.secuencia_negativa_46}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Secuencia Negativa 46">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerEquiposBM.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerEquiposBM.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerEquiposBM.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerEquiposBM.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Numero">
+<h:outputText value="#{dato.numero}" />
+</p:column>
+<p:column headerText="Codigo">
+<h:outputText value="#{dato.codigo}" />
+</p:column>
+<p:column headerText="Denominacion">
+<h:outputText value="#{dato.denominacion}" />
+</p:column>
+<p:column headerText="Tipo Equipo ">
+<h:outputText value="#{dato.tipo_equipo}" />
+</p:column>
+<p:column headerText="Barra">
+<h:outputText value="#{dato.barra}" />
+</p:column>
+<p:column headerText="Celda">
+<h:outputText value="#{dato.celda}" />
+</p:column>
+<p:column headerText="Potencia KVA">
+<h:outputText value="#{dato.potencia_kva}" />
+</p:column>
+<p:column headerText="Corriente">
+<h:outputText value="#{dato.corriente}" />
+</p:column>
+<p:column headerText="Voltaje">
+<h:outputText value="#{dato.voltaje}" />
+</p:column>
+<p:column headerText="Voltaje2">
+<h:outputText value="#{dato.voltaje2}" />
+</p:column>
+<p:column headerText="Prot Sobrecorriente 50-51">
+<h:outputText value="#{dato.prot_sobrecorriente_50_51}" />
+</p:column>
+<p:column headerText="Falla a Tierra 64">
+<h:outputText value="#{dato.falla_a_la_tierra_64}" />
+</p:column>
+<p:column headerText="Sobrecarga 49">
+<h:outputText value="#{dato.sobrecarga_49}" />
+</p:column>
+<p:column headerText="Secuencia Negativa 46">
+<h:outputText value="#{dato.secuencia_negativa_46}" />
+</p:column>
+
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerEquiposBM.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerEquiposBM.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerEquiposBM.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Numero"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Numero"
+    value="#{beanTerEquiposBM.entidadRegistrar.numero}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Numero">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo"
+    value="#{beanTerEquiposBM.entidadRegistrar.codigo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Denominacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Denominacion"
+    value="#{beanTerEquiposBM.entidadRegistrar.denominacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Denominacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Tipo Equipo"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Tipo Equipo"
+    value="#{beanTerEquiposBM.entidadRegistrar.tipo_equipo}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Tipo Equipo">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Barra"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Barra"
+    value="#{beanTerEquiposBM.entidadRegistrar.barra}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Barra">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Celda"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Celda"
+    value="#{beanTerEquiposBM.entidadRegistrar.celda}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Celda">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia KVA"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia KVA"
+    value="#{beanTerEquiposBM.entidadRegistrar.potencia_kva}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Potencia KVA">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Corriente"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Corriente"
+    value="#{beanTerEquiposBM.entidadRegistrar.corriente}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Corriente">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje"
+    value="#{beanTerEquiposBM.entidadRegistrar.voltaje}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Voltaje">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje2"
+    value="#{beanTerEquiposBM.entidadRegistrar.voltaje2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Voltaje2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Ubicacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Ubicacion"
+    value="#{beanTerEquiposBM.entidadRegistrar.ubicacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Ubicacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Prot Sobrecorriente 50-51"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Prot Sobrecorriente 50-51"
+    value="#{beanTerEquiposBM.entidadRegistrar.prot_sobrecorriente_50_51}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Prot Sobrecorriente 50-51">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Falla a Tierra 64"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Falla a Tierra 64"
+    value="#{beanTerEquiposBM.entidadRegistrar.falla_a_la_tierra_64}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Falla a Tierra 64">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Sobrecarga 49"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Sobrecarga 49"
+    value="#{beanTerEquiposBM.entidadRegistrar.sobrecarga_49}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Sobrecarga 49">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Secuencia Negativa 46"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Secuencia Negativa 46"
+    value="#{beanTerEquiposBM.entidadRegistrar.secuencia_negativa_46}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Secuencia Negativa 46">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerEquiposBM.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerEquiposBM.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

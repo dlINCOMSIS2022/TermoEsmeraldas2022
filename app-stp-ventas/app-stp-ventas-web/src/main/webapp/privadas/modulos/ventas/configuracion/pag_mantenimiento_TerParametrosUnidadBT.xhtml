@@ -1,0 +1,568 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerParametrosUnidadBAG.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerParametrosUnidadBAG.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia Activa"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia Activa"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.potencia_activa}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor potencia activa">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje Generador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje Generador"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.voltaje_generador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor voltaje generador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aire Servicios"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aire Servicios"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_aire_servicios}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aire Servicios">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aire Instrumentos"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aire Instrumentos"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_aire_instrumentos}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aire Instrumentos">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Agua Enfr CC"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Agua Enfr CC"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_agua_enfr_cc}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Agua Enfr CC">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua Enfr CC Entrada"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua Enfr CC Entrada"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_enfr_cc_entrada}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua Enfr CC Entrada">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua Enfr CC Salida"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua Enfr CC Salida"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_enfr_cc_salida}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua Enfr CC Salida">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua C Entrada"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua C Entrada"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_c_entrada}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua C Entrada">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua C Salida"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua C Salida"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_c_salida}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua C Salida">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp MT1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp MT1"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_mt1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp MT1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp UT1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp UT1"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_ut1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp UT1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp STO"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp STO"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_sto}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp STO">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="GDE Voltaje Carga Bateria"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="GDE Voltaje Carga Bateria"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.gde_voltaje_carga_bateria}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor GDE Voltaje Carga Bateria">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="GDE Nivel Diesel"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="GDE Nivel Diesel"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.gde_nivel_diesel}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor GDE Nivel Diesel">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp FO JS-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp FO JS-S2"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_fo_js_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp FO JS-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp FO JS-S3"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp FO JS-S3"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_fo_js_s3}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp FO JS-S3">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerParametrosUnidadBAG.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerParametrosUnidadBAG.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerParametrosUnidadBAG.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerParametrosUnidadBAG.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+
+<p:column headerText="Potencia Activa">
+<h:outputText value="#{dato.potencia_activa}" />
+</p:column>
+
+<p:column headerText="Voltaje Generador">
+<h:outputText value="#{dato.voltaje_generador}" />
+</p:column>
+
+<p:column headerText="Presion Aire Servicios">
+<h:outputText value="#{dato.presion_aire_servicios}" />
+</p:column>
+
+<p:column headerText="Presion Aire Instrumentos">
+<h:outputText value="#{dato.presion_aire_instrumentos}" />
+</p:column>
+
+<p:column headerText="Presion Agua Enfr CC">
+<h:outputText value="#{dato.presion_agua_enfr_cc}" />
+</p:column>
+
+<p:column headerText="Temperatura Agua Enfr CC Entrada">
+<h:outputText value="#{dato.presion_agua_enfr_cc_entrada}" />
+</p:column>
+
+<p:column headerText="Temperatura Agua Enfr CC Salida">
+<h:outputText value="#{dato.presion_agua_enfr_cc_salida}" />
+</p:column>
+
+<p:column headerText="Temperatura Agua C Entrada">
+<h:outputText value="#{dato.temp_agua_c_entrada}" />
+</p:column>
+
+<p:column headerText="Temperatura Agua C Salida">
+<h:outputText value="#{dato.temp_agua_c_salida}" />
+</p:column>
+
+<p:column headerText="Max Temp MT1">
+<h:outputText value="#{dato.max_temp_mt1}" />
+</p:column>
+
+<p:column headerText="Max Temp UT1">
+<h:outputText value="#{dato.max_temp_ut1}" />
+</p:column>
+
+<p:column headerText="Max Temp STO">
+<h:outputText value="#{dato.max_temp_sto}" />
+</p:column>
+
+<p:column headerText="GDE Voltaje Carga Bateria">
+<h:outputText value="#{dato.gde_voltaje_carga_bateria}" />
+</p:column>
+
+<p:column headerText="GDE Nivel Diesel">
+<h:outputText value="#{dato.gde_nivel_diesel}" />
+</p:column>
+
+<p:column headerText="Temp FO JS-S2">
+<h:outputText value="#{dato.temp_fo_js_s2}" />
+</p:column>
+
+<p:column headerText="Temp FO JS-S3">
+<h:outputText value="#{dato.temp_fo_js_s3}" />
+</p:column>
+
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerParametrosUnidadBAG.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerParametrosUnidadBAG.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Potencia Activa"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Potencia Activa"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.potencia_activa}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor potencia activa">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Voltaje Generador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Voltaje Generador"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.voltaje_generador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor voltaje generador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aire Servicios"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aire Servicios"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_aire_servicios}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aire Servicios">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Aire Instrumentos"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Aire Instrumentos"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_aire_instrumentos}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Aire Instrumentos">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Agua Enfr CC"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Agua Enfr CC"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.presion_agua_enfr_cc}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Agua Enfr CC">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua Enfr CC Entrada"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua Enfr CC Entrada"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_enfr_cc_entrada}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua Enfr CC Entrada">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua Enfr CC Salida"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua Enfr CC Salida"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_enfr_cc_salida}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua Enfr CC Salida">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua C Entrada"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua C Entrada"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_c_entrada}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua C Entrada">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp Agua C Salida"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp Agua C Salida"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_agua_c_salida}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp Agua C Salida">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp MT1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp MT1"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_mt1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp MT1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp UT1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp UT1"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_ut1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp UT1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Max Temp STO"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Max Temp STO"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.max_temp_sto}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Max Temp STO">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="GDE Voltaje Carga Bateria"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="GDE Voltaje Carga Bateria"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.gde_voltaje_carga_bateria}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor GDE Voltaje Carga Bateria">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="GDE Nivel Diesel"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="GDE Nivel Diesel"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.gde_nivel_diesel}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor GDE Nivel Diesel">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp FO JS-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp FO JS-S2"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_fo_js_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp FO JS-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temp FO JS-S3"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temp FO JS-S3"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.temp_fo_js_s3}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temp FO JS-S3">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerParametrosUnidadBAG.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerParametrosUnidadBAG.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerParametrosUnidadBAG.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

@@ -1,0 +1,378 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerInsumosBC.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerInsumosBC.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerInsumosBC.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+<h:outputText value="Dato Id"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Dato Id"
+value="#{beanTerInsumosBC.entidadRegistrar.iddato}"
+onblur="ChangeCase(this);" required="true"
+requiredMessage="Debe ingresar valor iddato">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S1"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S3"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S3"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s3}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S3">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S4"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S4"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s4}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S4 SH">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque MK-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque MK-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_mk_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque MK-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque MY-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque MY-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_my_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque MY-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Hidrogeno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Hidrogeno"
+    value="#{beanTerInsumosBC.entidadRegistrar.hidrogeno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Hidrogeno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="CO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="CO2"
+    value="#{beanTerInsumosBC.entidadRegistrar.co2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor CO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+    </div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nitrogeno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nitrogeno"
+    value="#{beanTerInsumosBC.entidadRegistrar.nitrogeno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nitrogeno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerInsumosBC.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerInsumosBC.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerInsumosBC.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerInsumosBC.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerInsumosBC.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Nivel Tanque JS-S1">
+<h:outputText value="#{dato.nivel_tanque_js_s1}" />
+</p:column>
+<p:column headerText="Nivel Tanque JS-S2">
+<h:outputText value="#{dato.nivel_tanque_js_s2}" />
+</p:column>
+<p:column headerText="Nivel Tanque JS-S3">
+<h:outputText value="#{dato.nivel_tanque_js_s3}" />
+</p:column>
+<p:column headerText="Nivel Tanque JS-S4">
+<h:outputText value="#{dato.nivel_tanque_js_s4}" />
+</p:column>
+<p:column headerText="Nivel Tanque MK-S2">
+<h:outputText value="#{dato.nivel_tanque_mk_s2}" />
+</p:column>
+<p:column headerText="Nivel Tanque MY-S2">
+<h:outputText value="#{dato.nivel_tanque_my_s2}" />
+</p:column>
+<p:column headerText="Hidrogeno">
+<h:outputText value="#{dato.hidrogeno}" />
+</p:column>
+<p:column headerText="CO2">
+<h:outputText value="#{dato.co2}" />
+</p:column>
+<p:column headerText="Nitrogeno">
+<h:outputText value="#{dato.nitrogeno}" />
+</p:column>
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerInsumosBC.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerInsumosBC.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerInsumosBC.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+<h:outputText value="Dato Id"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Dato Id"
+value="#{beanTerInsumosBC.entidadRegistrar.iddato}"
+onblur="ChangeCase(this);" required="true"
+requiredMessage="Debe ingresar valor iddato">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S1"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S3"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S3"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s3}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S3">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque JS-S4"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque JS-S4"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_js_s4}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque JS-S4 SH">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque MK-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque MK-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_mk_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque MK-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nivel Tanque MY-S2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nivel Tanque MY-S2"
+    value="#{beanTerInsumosBC.entidadRegistrar.nivel_tanque_my_s2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nivel Tanque MY-S2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Hidrogeno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Hidrogeno"
+    value="#{beanTerInsumosBC.entidadRegistrar.hidrogeno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Hidrogeno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="CO2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="CO2"
+    value="#{beanTerInsumosBC.entidadRegistrar.co2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor CO2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+    </div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Nitrogeno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Nitrogeno"
+    value="#{beanTerInsumosBC.entidadRegistrar.nitrogeno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Nitrogeno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerInsumosBC.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerInsumosBC.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerInsumosBC.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

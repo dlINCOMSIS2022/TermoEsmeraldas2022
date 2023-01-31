@@ -1,0 +1,217 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+
+
+	<ui:define name="TITULO_FORMULARIO">#{beanMantenedorTipoProducto.tituloPagina}</ui:define>
+
+	<ui:define name="CUERPO_FORMULARIO">
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Empresa "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="Empresa"
+				requiredMessage="Debe seleccionar la empresa"
+				value="#{beanMantenedorTipoProducto.lEmpresaID}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione Empresa" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems
+					value="#{beanMantenedorTipoProducto.lListaEmpresaCombo}"
+					var="empre" itemLabel="#{empre.lRazonSocial}"
+					itemValue="#{empre.id}"></f:selectItems>
+			</p:selectOneMenu>
+		</div>
+
+		
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Tipo Producto "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Tipo de Producto"
+				value="#{beanMantenedorTipoProducto.entidadRegistrar.lTipoProducto}"
+				onblur="ChangeCase(this);" required="true" id="TipoProducto"
+				requiredMessage="Debe ingresar el nombre del tipo producto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+		<h:outputText value="Descripción "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputTextarea placeholder="Descripción"
+				value="#{beanMantenedorTipoProducto.entidadRegistrar.observacion}"
+				onblur="ChangeCase(this);" required="true" id="Obseravcion"
+				requiredMessage="Debe ingresar la descripción" rows="2">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputTextarea>
+		</div>
+
+
+	</ui:define>
+
+	<ui:define name="CONTROL_FORMULARIO">
+		<p:commandButton value="Registrar" style="margin-bottom:10px;"
+			id="registrar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorTipoProducto.guardarOActualizar}"
+			process="contenedor" update="@form" partialSubmit="true" />
+
+	</ui:define>
+
+	<ui:define name="TITULO_TABLA">#{beanMantenedorTipoProducto.cabeceraTabla}</ui:define>
+
+	<ui:define name="CUERPO_TABLA">
+		<p:dataTable value="#{beanMantenedorTipoProducto.listaEntidades}"
+			var="dato" widgetVar="tablaDatos"
+			emptyMessage="#{beanMantenedorTipoProducto.mensajeTablaVacia}"
+			rows="8" reflow="true" paginator="true" paginatorPosition="bottom"
+			id="tablaDatos" paginatorAlwaysVisible="false">
+
+
+			<p:column headerText="...">
+				<p:tooltip for="obervacionCol" value="#{dato.observacion}"
+					position="top" />
+				<p:commandLink title="#{cola.id}" id="obervacionCol">
+					<span class="fa-stack fa-lg"> <i
+						class="fa fa-circle fa-stack-2x"></i> <i
+						class="fa fa-lightbulb-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+					</span>
+				</p:commandLink>
+			</p:column>
+
+			<p:column filterBy="#{dato.lEmpresa.lRazonSocial}"
+				filterMatchMode="contains" footerText="Empresa">
+				<h:outputText value="#{dato.lEmpresa.lRazonSocial}" />
+			</p:column>
+
+			<p:column headerText="Tipo Producto">
+				<h:outputText value="#{dato.lTipoProducto}" />
+			</p:column>
+
+			<p:column footerText="Estado" filterBy="#{dato.estado}"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('tablaDatos').filter()">
+						<f:selectItem itemLabel="ESTADO" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="ACTIVO" itemValue="A" />
+						<f:selectItem itemLabel="INACTIVO" itemValue="I" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText
+					value="#{dato.estado eq beanMantenedorTipoProducto.estadoActivo?'ACTIVO':'INACTIVO'}" />
+			</p:column>
+			<p:column headerText="Fecha Registro">
+				<h:outputText value="#{dato.fechaRegistro}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+						timeZone="#{beanMantenedorTipoProducto.currentTimeZone}" />
+				</h:outputText>
+			</p:column>
+
+
+			<p:column headerText="Acciones">
+				<div class="p-grid ui-fluid">
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Cambiar Estado"
+							actionListener="#{beanMantenedorTipoProducto.cambiarEstado}"
+							update="@form" process="@this">
+
+							<i class="fa fa-exchange Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorTipoProducto.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+
+							<p:confirm header="Confirmación"
+								message="Seguro que desea realizar esta operación?"
+								icon="ui-icon-alert" />
+						</p:commandLink>
+					</div>
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Actualizar"
+							actionListener="#{beanMantenedorTipoProducto.actualizarEntidad}"
+							update="@([id$=dialogoMantenimiento])"
+							oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+							<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorTipoProducto.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+						</p:commandLink>
+					</div>
+				</div>
+
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="form_comp_visual">
+
+	</ui:define>
+
+	<ui:define name="cab_dialogo">
+		Actualización Tipo Producto
+	</ui:define>
+
+	<ui:define name="datos_dialogo">
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Empresa "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="EmpresaDialogo"
+				requiredMessage="Debe seleccionar la empresa"
+				value="#{beanMantenedorTipoProducto.lEmpresaID}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione Empresa" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems
+					value="#{beanMantenedorTipoProducto.lListaEmpresaCombo}"
+					var="empre" itemLabel="#{empre.lRazonSocial}"
+					itemValue="#{empre.id}"></f:selectItems>
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Tipo Producto "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Tipo de Producto"
+				value="#{beanMantenedorTipoProducto.entidadRegistrar.lTipoProducto}"
+				onblur="ChangeCase(this);" required="true" id="TipoProductoDialogo"
+				requiredMessage="Debe ingresar el nombre del tipo producto">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+		<h:outputText value="Descripcion "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputTextarea placeholder="Descripcion"
+				value="#{beanMantenedorTipoProducto.entidadRegistrar.observacion}"
+				onblur="ChangeCase(this);" required="true" id="Obseravcion"
+				requiredMessage="Debe ingresar la descripción" rows="2">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputTextarea>
+		</div>
+
+	</ui:define>
+
+	<ui:define name="control_formulario_dialogo">
+
+		<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+			id="actualizar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorTipoProducto.guardarOActualizar}"
+			process="PanelActualizar"
+			update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+			oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+	</ui:define>
+
+	<ui:define name="control_dialogo">
+		<p:ajax event="close" update="PanelActualizar"
+			listener="#{beanMantenedorTipoProducto.eventoControlCierreDialogo}" />
+	</ui:define>
+
+
+</ui:composition>

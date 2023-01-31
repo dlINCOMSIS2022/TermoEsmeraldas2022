@@ -1,0 +1,362 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerCalentadoresBT.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerCalentadoresBT.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Id"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="L_R1"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="L_R1"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.l_r1}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor L_R1">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="L_R2"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="L_R2"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.l_r2}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor L_R2">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="L_R3"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="L_R3"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.l_r3}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor L_R3">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Desareador"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Desareador"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.desareador}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Desareador">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="L_R5"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="L_R5"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.l_r5}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor L_R5">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="L_R6"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="L_R6"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.l_r6}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor L_R6">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Presion Crossover"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Presion Crossover"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.presion_crossover}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Presion Crossover">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura Crossover"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura Crossover"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.temperatura_crossover}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura Crossover">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Turno"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Turno"
+    value="#{beanTerCalentadoresBT.entidadRegistrar.turno}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Turno">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerCalentadoresBT.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerCalentadoresBT.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerCalentadoresBT.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerCalentadoresBT.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+
+<p:column headerText="Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+
+<p:column headerText="Hora">
+<h:outputText value="#{dato.hora}" />
+</p:column>
+
+<p:column headerText="L_R1">
+<h:outputText value="#{dato.l_r1}" />
+</p:column>
+
+<p:column headerText="L_R2">
+<h:outputText value="#{dato.l_r2}" />
+</p:column>
+
+<p:column headerText="L_R3">
+<h:outputText value="#{dato.l_r3}" />
+</p:column>
+
+<p:column headerText="Desareador">
+<h:outputText value="#{dato.desareador}" />
+</p:column>
+
+<p:column headerText="L_R5">
+<h:outputText value="#{dato.l_r5}" />
+</p:column>
+
+<p:column headerText="L_R6">
+<h:outputText value="#{dato.l_r6}" />
+</p:column>
+
+<p:column headerText="Presion Crossover">
+<h:outputText value="#{dato.presion_crossover}" />
+</p:column>
+
+<p:column headerText="Temperatura Crossover">
+<h:outputText value="#{dato.temperatura_crossover}" />
+</p:column>
+
+<p:column headerText="Turno">
+<h:outputText value="#{dato.turno}" />
+</p:column>
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerCalentadoresBT.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerCalentadoresBT.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Fecha"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Fecha"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.fecha}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Fecha">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Id"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Id"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.iddato}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor iddato">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="L_R1"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="L_R1"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.l_r1}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor L_R1">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="L_R2"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="L_R2"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.l_r2}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor L_R2">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="L_R3"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="L_R3"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.l_r3}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor L_R3">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Desareador"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Desareador"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.desareador}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Desareador">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="L_R5"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="L_R5"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.l_r5}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor L_R5">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="L_R6"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="L_R6"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.l_r6}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor L_R6">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Presion Crossover"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Presion Crossover"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.presion_crossover}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Presion Crossover">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Temperatura Crossover"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Temperatura Crossover"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.temperatura_crossover}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Temperatura Crossover">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+    
+    <div class="p-col-12 p-md-3">
+        <h:outputText value="Turno"
+        style="font-size: 10px; font-weight: bold;" />
+        <p:inputText placeholder="Turno"
+        value="#{beanTerCalentadoresBT.entidadRegistrar.turno}"
+        onblur="ChangeCase(this);" required="true"
+        requiredMessage="Debe ingresar valor Turno">
+        <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+        </p:inputText>
+    </div>
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerCalentadoresBT.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerCalentadoresBT.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

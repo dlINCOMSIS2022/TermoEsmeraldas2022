@@ -1,0 +1,525 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+
+
+	<ui:define name="TITULO_FORMULARIO">#{beanMantenedorProducto.tituloPagina}</ui:define>
+
+	<ui:define name="CUERPO_FORMULARIO">
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Empresa "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="Empresa"
+				requiredMessage="Debe seleccionar la empresa"
+				value="#{beanMantenedorProducto.lEmpresaID}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione Empresa" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems
+					value="#{beanMantenedorTipoProducto.lListaEmpresaCombo}"
+					var="empre" itemLabel="#{empre.lRazonSocial}"
+					itemValue="#{empre.id}"></f:selectItems>
+				<p:ajax event="change" update="tipoProducto, mensajes"
+					process="@this" listener="#{beanMantenedorProducto.buscarTipos}" />
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Tipo Producto "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="tipoProducto"
+				requiredMessage="Debe seleccionar el tipo de producto"
+				value="#{beanMantenedorProducto.lTipoProducto}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione tipo producto" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lTiposProductos}"
+					var="tipo" itemLabel="#{tipo.lTipoProducto}" itemValue="#{tipo.id}"></f:selectItems>
+
+
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+		<h:outputText value="Nombre Producto "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Nombre Producto"
+				value="#{beanMantenedorProducto.entidadRegistrar.lNombre}"
+				onblur="ChangeCase(this);" required="true" id="NombreProducto"
+				requiredMessage="Debe ingresar el nombre del producto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Código Principal "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Código Principal"
+				value="#{beanMantenedorProducto.entidadRegistrar.lCodigoProducto}"
+				onblur="ChangeCase(this);" required="true" id="CodigoPrincipal"
+				requiredMessage="Debe ingresar el código principal del producto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Código Auxiliar "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Código Auxiliar"
+				value="#{beanMantenedorProducto.entidadRegistrar.lCodigoAuxiliar}"
+				onblur="ChangeCase(this);" id="CodigoAuxiliar">
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+		<h:outputText value="Detalles Adicionales "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Detalles Adicionales"
+				value="#{beanMantenedorProducto.entidadRegistrar.lDetallesAdicionales}"
+				onblur="ChangeCase(this);" id="DetalleAdiconales">
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-3">
+		<h:outputText value="Precio "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputNumber placeholder="Precio"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioUnitario}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				required="true" id="Precio"
+				requiredMessage="Debe ingresar el precio unitario">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputNumber>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="IVA "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="iva"
+				value="#{beanMantenedorProducto.idImpuestoIva}" required="true"
+				label="Seleccionable" requiredMessage="Debe seleccionar el IVA">
+				<f:selectItem itemLabel="Seleccione IVA" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lListaImpuestoIva}"
+					var="impuesto" itemLabel="#{impuesto.lDescripcion}"
+					itemValue="#{impuesto.id}"></f:selectItems>
+
+				<p:ajax event="change" update="PrecioIva, mensajes" process="@this"
+					listener="#{beanMantenedorProducto.calcularIVA}" />
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-3">
+		<h:outputText value="Precio Con IVA "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputNumber placeholder="Precio Con IVA" readonly="true"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioIVA}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				required="true" id="PrecioIva"
+				requiredMessage="Debe ingresar el precio unitario">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputNumber>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="ICE "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu value="#{beanMantenedorProducto.idImpuestoICE}">
+				<f:selectItem itemLabel="NO APLICA ICE" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lListaImpuestoICE}"
+					var="impuesto" itemLabel="#{impuesto.lDescripcion}"
+					itemValue="#{impuesto.id}"></f:selectItems>
+
+				<p:ajax event="change" update="PrecioICE, mensajes" process="@this"
+					listener="#{beanMantenedorProducto.calcularICE}" />
+			</p:selectOneMenu>
+		</div>
+
+
+		<div class="p-col-12 p-md-6">
+		<h:outputText value="Precio Con ICE "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputNumber placeholder="Precio Con ICE" readonly="true"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioICE}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				id="PrecioICE">
+			</p:inputNumber>
+
+		</div>
+
+		<div class="p-col-12 p-md-12">
+		<h:outputText value="Descripción "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputTextarea placeholder="Descripción"
+				value="#{beanMantenedorProducto.entidadRegistrar.lDescripcion}"
+				onblur="ChangeCase(this);" required="true" id="Descripción"
+				requiredMessage="Debe ingresar la descripción" rows="2">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputTextarea>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+			<p:fileUpload listener="#{beanMantenedorProducto.subir}"
+				mode="advanced" dragDropSupport="true" update="@this"
+				process="@this" sizeLimit="1000000" fileLimit="1"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" cancelLabel="Limpiar"
+				uploadLabel="Subir" invalidFileMessage="Archivo no permitido"
+				invalidSizeMessage="El tamaño no es permitido" required="false"
+				label="Escoja" />
+		</div>
+	</ui:define>
+
+	<ui:define name="CONTROL_FORMULARIO">
+		<p:commandButton value="Registrar" style="margin-bottom:10px;"
+			id="registrar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorProducto.guardarOActualizar}"
+			process="contenedor" update="@form" partialSubmit="true" />
+
+	</ui:define>
+
+	<ui:define name="TITULO_TABLA">#{beanMantenedorProducto.cabeceraTabla}</ui:define>
+
+	<ui:define name="CUERPO_TABLA">
+		<p:dataTable value="#{beanMantenedorProducto.listaEntidades}"
+			var="dato" emptyMessage="#{beanMantenedorProducto.mensajeTablaVacia}"
+			rows="8" reflow="true" paginator="true" paginatorPosition="bottom"
+			id="tablaDatos" widgetVar="tablaDatos" paginatorAlwaysVisible="false">
+
+			<p:column headerText="...">
+				<p:tooltip for="obervacionCol" value="#{dato.lDescripcion}"
+					position="top" />
+				<p:commandLink title="#{cola.id}" id="obervacionCol">
+					<span class="fa-stack fa-lg"> <i
+						class="fa fa-circle fa-stack-2x"></i> <i
+						class="fa fa-lightbulb-o fa-stack-1x fa-inverse"
+						aria-hidden="true"></i>
+					</span>
+				</p:commandLink>
+			</p:column>
+
+			<p:column headerText="Imagen">
+
+				<p:graphicImage rendered="#{dato.imagenReferencia == null}"
+					name="images/productoDefault.png" library="mirage-layout" value="#"
+					style="outline: aliceblue; width: 33px; height: 33px; vertical-align: top; border-radius: 50%;" />
+				<o:graphicImage rendered="#{dato.imagenReferencia != null}"
+					style="outline: aliceblue; width: 33px; height: 33px; vertical-align: top; border-radius: 50%;"
+					value="#{dato.imagenReferencia}" dataURI="true" id="imagenAvatar" />
+
+				<p:overlayPanel id="imagePanel" for="imagenAvatar" hideEffect="fade"
+					rendered="#{dato.imagenReferencia != null}">
+					<o:graphicImage
+						style="outline: aliceblue; width: 200px; height: 200px; vertical-align: top; border-radius: 10%;"
+						value="#{dato.imagenReferencia}" dataURI="true"
+						rendered="#{dato.imagenReferencia != null}" />
+				</p:overlayPanel>
+
+			</p:column>
+
+			<p:column headerText="Empresa">
+				<o:graphicImage rendered="#{dato.lEmpresa.imagenReferencia != null}"
+					style="outline: aliceblue; width: 33px; height: 33px; vertical-align: top; border-radius: 50%;"
+					value="#{dato.lEmpresa.imagenReferencia}" dataURI="true"
+					id="imagenRef" />
+
+				<p:overlayPanel id="imagePanelEmp" for="imagenRef" hideEffect="fade"
+					rendered="#{dato.lEmpresa.imagenReferencia != null}">
+					<o:graphicImage
+						style="outline: aliceblue; width: 200px; height: 200px; vertical-align: top; border-radius: 10%;"
+						value="#{dato.lEmpresa.imagenReferencia}" dataURI="true"
+						rendered="#{dato.lEmpresa.imagenReferencia != null}" />
+				</p:overlayPanel>
+			</p:column>
+
+			<p:column filterBy="#{dato.tipoProducto.lTipoProducto}"
+				filterMatchMode="contains" footerText="Tipo Producto">
+				<h:outputText value="#{dato.tipoProducto.lTipoProducto}" />
+			</p:column>
+
+			<p:column filterMatchMode="contains" footerText="Código"
+				filterBy="#{dato.lCodigoProducto}">
+				<h:outputText value="#{dato.lCodigoProducto}" />
+			</p:column>
+
+			<p:column headerText="Nombre Producto">
+				<h:outputText value="#{dato.lNombre}" />
+			</p:column>
+
+			<p:column headerText="Precio">
+				<h:outputText value="#{dato.lPrecioUnitario}" />
+			</p:column>
+
+			<p:column headerText="Precio IVA">
+				<h:outputText value="#{dato.lPrecioIVA}" />
+			</p:column>
+
+			<p:column headerText="Estado">
+				<h:outputText
+					value="#{dato.estado eq beanMantenedorProducto.estadoActivo?'ACTIVO':'INACTIVO'}" />
+			</p:column>
+
+
+
+			<p:column headerText="Fecha Registro">
+				<h:outputText value="#{dato.fechaRegistro}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+						timeZone="#{beanMantenedorRol.currentTimeZone}" />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Acciones">
+				<div class="p-grid ui-fluid">
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Cambiar Estado"
+							actionListener="#{beanMantenedorProducto.cambiarEstado}"
+							update="@form" process="@this">
+
+							<i class="fa fa-exchange Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorProducto.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+
+							<p:confirm header="Confirmación"
+								message="Seguro que desea realizar esta operación?"
+								icon="ui-icon-alert" />
+						</p:commandLink>
+					</div>
+
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Actualizar"
+							actionListener="#{beanMantenedorProducto.actualizarEntidad}"
+							update="@([id$=dialogoMantenimiento])"
+							oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+							<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorProducto.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+						</p:commandLink>
+					</div>
+
+
+				</div>
+
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="form_comp_visual">
+
+
+
+	</ui:define>
+
+	<ui:define name="cab_dialogo">
+		#{beanMantenedorProducto.cabeceraDialogo}
+	</ui:define>
+
+	<ui:define name="datos_dialogo">
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="Empresa"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="EmpresaDlg"
+				requiredMessage="Debe seleccionar la empresa"
+				value="#{beanMantenedorProducto.lEmpresaID}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione Empresa" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems
+					value="#{beanMantenedorTipoProducto.lListaEmpresaCombo}"
+					var="empre" itemLabel="#{empre.lRazonSocial}"
+					itemValue="#{empre.id}"></f:selectItems>
+				<p:ajax event="change" update="tipoProductoDlg, mensajeDialogo"
+					process="@this" listener="#{beanMantenedorProducto.buscarTipos}" />
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="Tipo Producto"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu id="tipoProductoDlg"
+				requiredMessage="Debe seleccionar el tipo de producto"
+				value="#{beanMantenedorProducto.lTipoProducto}" required="true"
+				label="Empresa">
+				<f:selectItem itemLabel="Seleccione tipo producto" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lTiposProductos}"
+					var="tipo" itemLabel="#{tipo.lTipoProducto}" itemValue="#{tipo.id}"></f:selectItems>
+
+
+			</p:selectOneMenu>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+			<h:outputText value="Nombre Producto"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Nombre Producto"
+				value="#{beanMantenedorProducto.entidadRegistrar.lNombre}"
+				onblur="ChangeCase(this);" required="true" id="NombreProductoDlg"
+				requiredMessage="Debe ingresar el nombre del producto">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputText>
+		</div>
+
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="Código Principal"
+				style="font-size: 10px; font-weight: bold;" />
+
+			<p:inputText placeholder="Código Principal"
+				value="#{beanMantenedorProducto.entidadRegistrar.lCodigoProducto}"
+				onblur="ChangeCase(this);" required="true"
+				id="CodigoPrincipalDialogo"
+				requiredMessage="Debe ingresar el código principal del producto">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="Código Auxiliar"
+				style="font-size: 10px; font-weight: bold;" />
+
+			<p:inputText placeholder="Código Auxiliar"
+				value="#{beanMantenedorProducto.entidadRegistrar.lCodigoAuxiliar}"
+				onblur="ChangeCase(this);" id="CodigoAuxiliarDialogo">
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+			<h:outputText value="Detalles Adicionales"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Detalles Adicionales"
+				value="#{beanMantenedorProducto.entidadRegistrar.lDetallesAdicionales}"
+				onblur="ChangeCase(this);" id="DetalleAdiconalesDialogo">
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-3">
+			<h:outputText value="Precio"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputNumber placeholder="Precio"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioUnitario}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				required="true" id="Preciodlg"
+				requiredMessage="Debe ingresar el precio unitario">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputNumber>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="IVA" style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu value="#{beanMantenedorProducto.idImpuestoIva}"
+				required="true" label="Seleccionable"
+				requiredMessage="Debe seleccionar el IVA">
+				<f:selectItem itemLabel="Seleccione IVA" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lListaImpuestoIva}"
+					var="impuesto" itemLabel="#{impuesto.lDescripcion}"
+					itemValue="#{impuesto.id}"></f:selectItems>
+
+				<p:ajax event="change" update="PrecioIvaDlg, mensajeDialogo"
+					process="@this" listener="#{beanMantenedorProducto.calcularIVA}" />
+			</p:selectOneMenu>
+		</div>
+
+
+		<div class="p-col-12 p-md-3">
+			<h:outputText value="Precio Con Iva"
+				style="font-size: 10px; font-weight: bold;" />
+
+			<p:inputNumber placeholder="Precio Con IVA"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioIVA}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				required="true" id="PrecioIvaDlg"
+				requiredMessage="Debe ingresar el precio unitario">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputNumber>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="ICE" style="font-size: 10px; font-weight: bold;" />
+			<p:selectOneMenu value="#{beanMantenedorProducto.idImpuestoICE}">
+				<f:selectItem itemLabel="NO APLICA ICE" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItems value="#{beanMantenedorProducto.lListaImpuestoICE}"
+					var="impuesto" itemLabel="#{impuesto.lDescripcion}"
+					itemValue="#{impuesto.id}"></f:selectItems>
+
+				<p:ajax event="change" update="PrecioICE, mensajeDialogo"
+					process="@this" listener="#{beanMantenedorProducto.calcularICE}" />
+			</p:selectOneMenu>
+		</div>
+
+
+
+
+		<div class="p-col-12 p-md-6">
+			<h:outputText value="Precio con ICE"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputNumber placeholder="Precio Con ICE" readonly="true"
+				value="#{beanMantenedorProducto.entidadRegistrar.lPrecioICE}"
+				symbol="#{beanMantenedorProducto.lSimboloDinero}" symbolPosition="p"
+				decimalSeparator="#{beanMantenedorProducto.lSeparadorDecimal}"
+				thousandSeparator="#{beanMantenedorProducto.lSeparadorMiles}"
+				id="PrecioICE">
+			</p:inputNumber>
+		</div>
+
+
+		<div class="p-col-12 p-md-12">
+			<h:outputText value="Observación Producto"
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputTextarea placeholder="Descripción"
+				value="#{beanMantenedorProducto.entidadRegistrar.lDescripcion}"
+				onblur="ChangeCase(this);" required="true" id="DescripciónDlg"
+				requiredMessage="Debe ingresar la descripción" rows="2">
+				<f:ajax event="blur" execute="@this" render="mensajeDialogo"></f:ajax>
+			</p:inputTextarea>
+		</div>
+
+		<div class="p-col-12 p-md-12">
+
+			<p:fileUpload listener="#{beanMantenedorProducto.subir}"
+				mode="advanced" dragDropSupport="true" update="@this"
+				process="@this" sizeLimit="1000000" fileLimit="1"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" cancelLabel="Limpiar"
+				uploadLabel="Subir" invalidFileMessage="Archivo no permitido"
+				invalidSizeMessage="El tamaño no es permitido" required="false"
+				label="Escoja" />
+		</div>
+
+	</ui:define>
+
+	<ui:define name="control_formulario_dialogo">
+		<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+			id="actualizar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorProducto.guardarOActualizar}"
+			process="PanelActualizar"
+			update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+			oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+	</ui:define>
+
+	<ui:define name="control_dialogo">
+		<p:ajax event="close" update="PanelActualizar"
+			listener="#{beanMantenedorProducto.eventoControlCierreDialogo}" />
+	</ui:define>
+
+
+</ui:composition>

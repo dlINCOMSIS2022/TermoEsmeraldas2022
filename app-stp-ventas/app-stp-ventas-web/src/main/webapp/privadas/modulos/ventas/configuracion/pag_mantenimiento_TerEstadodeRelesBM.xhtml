@@ -1,0 +1,181 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerEstadodeRelesBM.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerEstadodeRelesBM.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo Rele"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo Rele"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.codrele}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo Rele">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Posicion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Posicion"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.posicion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Posicion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Estatus"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Estatus"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.estatus}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Estatus">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerEstadodeRelesBM.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerEstadodeRelesBM.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerEstadodeRelesBM.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerEstadodeRelesBM.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Codigo Rele">
+<h:outputText value="#{dato.codrele}" />
+</p:column>
+<p:column headerText="Posicion">
+<h:outputText value="#{dato.posicion}" />
+</p:column>
+<p:column headerText="Estatus">
+<h:outputText value="#{dato.status}" />
+</p:column>
+
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerEstadodeRelesBM.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerEstadodeRelesBM.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Codigo Rele"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Codigo Rele"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.codrele}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Codigo Rele">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Posicion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Posicion"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.posicion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Posicion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Estatus"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Estatus"
+    value="#{beanTerEstadodeRelesBM.entidadRegistrar.estatus}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Estatus">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerEstadodeRelesBM.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerEstadodeRelesBM.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

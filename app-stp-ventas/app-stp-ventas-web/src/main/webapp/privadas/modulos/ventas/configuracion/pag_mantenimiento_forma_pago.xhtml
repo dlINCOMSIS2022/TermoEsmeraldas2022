@@ -1,0 +1,170 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+
+
+	<ui:define name="TITULO_FORMULARIO">#{beanMantenedorFormaPago.tituloPagina}</ui:define>
+
+	<ui:define name="CUERPO_FORMULARIO">
+
+		<div class="p-col-12 p-md-2">
+		<h:outputText value="Código "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Código"
+				value="#{beanMantenedorFormaPago.entidadRegistrar.codigo}"
+				required="true"
+				requiredMessage="Debe ingresar el código del impuesto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+		
+		<div class="p-col-12 p-md-10">
+		<h:outputText value="Descripción "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Descripción"
+				value="#{beanMantenedorFormaPago.entidadRegistrar.descripcion}"
+				onblur="ChangeCase(this);" required="true"
+				requiredMessage="Debe ingresar la descripción del impuesto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+	</ui:define>
+
+	<ui:define name="CONTROL_FORMULARIO">
+		<p:commandButton value="Registrar" style="margin-bottom:10px;"
+			id="registrar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorFormaPago.guardarOActualizar}"
+			process="contenedor" update="@form" partialSubmit="true" />
+
+	</ui:define>
+
+	<ui:define name="TITULO_TABLA">#{beanMantenedorFormaPago.cabeceraTabla}</ui:define>
+
+	<ui:define name="CUERPO_TABLA">
+		<p:dataTable value="#{beanMantenedorFormaPago.listaEntidades}"
+			var="dato" widgetVar="tablaDatos"
+			emptyMessage="#{beanMantenedorFormaPago.mensajeTablaVacia}" rows="8"
+			reflow="true" paginator="true" paginatorPosition="bottom"
+			id="tablaDatos" paginatorAlwaysVisible="false">
+
+
+			<p:column headerText="Descripción">
+				<h:outputText value="#{dato.descripcion}" />
+			</p:column>
+
+			<p:column headerText="Código">
+				<h:outputText value="#{dato.codigo}" />
+			</p:column>
+
+			<p:column footerText="Estado" filterBy="#{dato.estado}"
+				filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('tablaDatos').filter()">
+						<f:selectItem itemLabel="ESTADO" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="ACTIVO" itemValue="A" />
+						<f:selectItem itemLabel="INACTIVO" itemValue="I" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText
+					value="#{dato.estado eq beanMantenedorFormaPago.estadoActivo?'ACTIVO':'INACTIVO'}" />
+			</p:column>
+			<p:column headerText="Fecha Registro">
+				<h:outputText value="#{dato.fechaRegistro}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+						timeZone="#{beanMantenedorFormaPago.currentTimeZone}" />
+				</h:outputText>
+			</p:column>
+
+
+			<p:column headerText="Acciones">
+				<div class="p-grid ui-fluid">
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Cambiar Estado"
+							actionListener="#{beanMantenedorFormaPago.cambiarEstado}"
+							update="@form" process="@this">
+
+							<i class="fa fa-exchange Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorFormaPago.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+
+							<p:confirm header="Confirmación"
+								message="Seguro que desea realizar esta operación?"
+								icon="ui-icon-alert" />
+						</p:commandLink>
+					</div>
+					<div class="p-col-12 p-lg-6">
+						<p:commandLink title="Actualizar"
+							actionListener="#{beanMantenedorFormaPago.actualizarEntidad}"
+							update="@([id$=dialogoMantenimiento])"
+							oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+							<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+							<f:attribute
+								name="#{beanMantenedorFormaPago.nombreAtributoCambioEstado}"
+								value="#{dato}"></f:attribute>
+						</p:commandLink>
+					</div>
+				</div>
+
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+	<ui:define name="form_comp_visual">
+
+	</ui:define>
+
+	<ui:define name="cab_dialogo">
+		Actualización Forma Pago
+	</ui:define>
+
+	<ui:define name="datos_dialogo">
+
+		<div class="p-col-12 p-md-10">
+		<h:outputText value="Descripción "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Descripción"
+				value="#{beanMantenedorFormaPago.entidadRegistrar.descripcion}"
+				onblur="ChangeCase(this);" required="true"
+				requiredMessage="Debe ingresar la descripción del impuesto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+		<div class="p-col-12 p-md-2">
+		<h:outputText value="Código "
+				style="font-size: 10px; font-weight: bold;" />
+			<p:inputText placeholder="Código"
+				value="#{beanMantenedorFormaPago.entidadRegistrar.codigo}"
+				required="true"
+				requiredMessage="Debe ingresar el código del impuesto">
+				<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+			</p:inputText>
+		</div>
+
+	</ui:define>
+
+	<ui:define name="control_formulario_dialogo">
+
+		<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+			id="actualizar" styleClass="ui-button-rounded"
+			actionListener="#{beanMantenedorFormaPago.guardarOActualizar}"
+			process="PanelActualizar"
+			update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+			oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+	</ui:define>
+
+	<ui:define name="control_dialogo">
+		<p:ajax event="close" update="PanelActualizar"
+			listener="#{beanMantenedorFormaPago.eventoControlCierreDialogo}" />
+	</ui:define>
+
+
+</ui:composition>

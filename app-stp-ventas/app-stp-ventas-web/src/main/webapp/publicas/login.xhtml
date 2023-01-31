@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>Celec EP</title>
+        <h:outputScript name="js/layout.js" library="mirage-layout" />
+
+        <script type="text/javascript">
+            //<![CDATA[
+            function changeMode() {
+                var body = $('.login-body');
+
+                if (body) {
+                    if (body.hasClass('layout-dark')) {
+                        body.removeClass('layout-dark').addClass('layout-light');
+                    } else {
+                        body.removeClass('layout-light').addClass('layout-dark');
+                    }
+                }
+            }
+            //]]>
+
+            function ChangeCase(elem) {
+        		elem.value = elem.value.toUpperCase();
+        	}
+        	
+        </script>
+    </h:head>
+
+    <h:body styleClass="login-body layout-light">
+
+
+        <div class="login-content">
+            
+            <div class="login-panel">
+                <div class="login-panel-content">
+                    <div class="logo">
+                        <p:graphicImage name="images/stp.png" library="mirage-layout" style="width: 400px !important"  />
+                    </div>
+                    <h1>Ingreso</h1>
+                    <p>Bienvenido, por favor ingrese sus credenciales</p>
+                    <h:form styleClass="forms">
+                    	
+                    	<p:messages showDetail="false" closable="true"></p:messages>
+                    	
+                        <div class="login-input-wrapper">
+                            <p:outputLabel for="username" value="Username" />
+                            <p:inputText id="username" placeholder="Ingrese su usuario"  value="#{beanLogin.usuario}" onblur="ChangeCase(this);"
+							required="true" requiredMessage="Ingrese el usuario" />
+                            <i class="fa fa-user" />
+                        </div>
+
+                        <div class="login-input-wrapper">
+                            <p:outputLabel for="password" value="Password" />
+                            <p:password id="password" placeholder="Ingrese su password" feedback="false" value="#{beanLogin.clave}" required="true"
+							requiredMessage="Ingrese la clave" />
+                            <i class="fa fa-lock" />
+                        </div>
+
+                        <div class="buttons">
+                            <p:commandButton value="Ingresar" action="#{beanLogin.login}" update="@form" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="desert"></div>
+        </div>
+
+        <h:outputStylesheet name="css/layout-blue-dark.css" library="mirage-layout" />
+
+    </h:body>
+
+</html>

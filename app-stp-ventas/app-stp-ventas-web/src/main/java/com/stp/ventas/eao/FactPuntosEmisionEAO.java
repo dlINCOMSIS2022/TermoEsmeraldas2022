@@ -1,0 +1,12 @@
+package com.stp.ventas.eao;
+
+import javax.ejb.Stateless;
+
+import com.stp.plataforma.eao.OnixEAO;
+import com.stp.ventas.dominio.FactPuntosEmision;
+
+@Stateless
+public class FactPuntosEmisionEAO extends OnixEAO<FactPuntosEmision, Long>   {
+
+
+}

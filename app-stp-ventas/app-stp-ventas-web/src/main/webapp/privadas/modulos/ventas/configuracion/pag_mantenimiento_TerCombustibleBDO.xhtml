@@ -1,0 +1,556 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+template="/WEB-INF/template_formulario_mantenimiento.xhtml">
+<ui:define name="TITULO_FORMULARIO">#{beanTerCombustibleBDO.tituloPagina}</ui:define>
+<ui:define name="CUERPO_FORMULARIO">
+<!-- <div class="p-col-12 p-md-2">
+<h:outputText value="Código Breaker"
+style="font-size: 10px; font-weight: bold;" />
+<p:inputText placeholder="Código Breaker "
+value="#{beanTerCombustibleBDO.entidadRegistrar.id}"
+required="true"
+requiredMessage="Debe ingresar el código de Breaker">
+<f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+</p:inputText>
+</div> -->
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Institucion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Institucion"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.institucion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Institucion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Punto de Inflamacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Punto de Inflamacion"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.punto_de_inflamacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Punto de Inflamacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Punto de Vertido"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Punto de Vertido"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.punto_de_vertido}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Punto de Vertido">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Agua"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Agua"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.agua}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Agua">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Cinematica"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Cinematica"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_cinematica}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Cinematica">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Cinematica 80"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Cinematica 80"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_cinematica_80}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Cinematica 80">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura para Quemado"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura para Quemado"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.temperatura_para_quemado}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura para Quemado">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Cenizas"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Cenizas"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.cenizas}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Cenizas">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Redwood"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Redwood"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_redwood}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Redwood">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Saybolt"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Saybolt"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_saybolt}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Saybolt">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Azufre"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Azufre"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.azufre}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Azufre">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Carbon Conradson"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Carbon Conradson"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.carbon_conradson}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Carbon Conradson">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Poder Calorico Inferior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Poder Calorico Inferior"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.poder_calorico_inferior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Poder Calorico Inferior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Poder Calorico Superior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Poder Calorico Superior"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.poder_calorico_superior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Poder Calorico Superior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Densidad API"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Densidad API"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.densidad_api}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Densidad API">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Densidad relativa"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Densidad relativa"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.densidad_relativa}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Densidad relativa">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Asfaltenos"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Asfaltenos"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.asfaltenos}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Asfaltenos">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="CONTROL_FORMULARIO">
+<p:commandButton value="Registrar" style="margin-bottom:10px;"
+id="registrar" styleClass="ui-button-rounded"
+actionListener="#{beanTerCombustibleBDO.guardarOActualizar}"
+process="contenedor" update="@form" partialSubmit="true" />
+</ui:define>
+<ui:define name="TITULO_TABLA">#{beanTerCombustibleBDO.cabeceraTabla}</ui:define>
+<ui:define name="CUERPO_TABLA">
+<p:dataTable value="#{beanTerCombustibleBDO.listaEntidades}"
+var="dato" widgetVar="tablaDatos"
+emptyMessage="#{beanTerCombustibleBDO.mensajeTablaVacia}" rows="8"
+reflow="true" paginator="true" paginatorPosition="bottom"
+id="tablaDatos" paginatorAlwaysVisible="false">
+<!-- <p:column headerText="Código breaker">
+<h:outputText value="#{dato.id}" />
+</p:column> -->
+<p:column headerText="Dato Id">
+<h:outputText value="#{dato.iddato}" />
+</p:column>
+<p:column headerText="Fecha">
+<h:outputText value="#{dato.fecha}" />
+</p:column>
+<p:column headerText="Institucion">
+<h:outputText value="#{dato.institucion}" />
+</p:column>
+<p:column headerText="Punto de Inflamacion">
+<h:outputText value="#{dato.punto_de_inflamacion}" />
+</p:column>
+<p:column headerText="Punto de Vertido">
+<h:outputText value="#{dato.punto_de_vertido}" />
+</p:column>
+<p:column headerText="Agua">
+<h:outputText value="#{dato.agua}" />
+</p:column>
+<p:column headerText="Viscosidad Cinematica">
+<h:outputText value="#{dato.viscocidad_cinematica}" />
+</p:column>
+<p:column headerText="Viscosidad Cinematica 80">
+<h:outputText value="#{dato.viscocidad_cinematica_80}" />
+</p:column>
+<p:column headerText="Temperatura para Quemado">
+<h:outputText value="#{dato.temperatura_para_quemado}" />
+</p:column>
+<p:column headerText="Cenizas">
+<h:outputText value="#{dato.cenizas}" />
+</p:column>
+<p:column headerText="Viscosidad Redwood">
+<h:outputText value="#{dato.viscocidad_redwood}" />
+</p:column>
+<p:column headerText="Viscosidad Saybolt">
+<h:outputText value="#{dato.viscocidad_saybolt}" />
+</p:column>
+<p:column headerText="Azufre">
+<h:outputText value="#{dato.azufre}" />
+</p:column>
+<p:column headerText="Carbon Conradson">
+<h:outputText value="#{dato.carbon_conradson" />
+</p:column>
+<p:column headerText="Poder Calorico Inferior">
+<h:outputText value="#{dato.poder_calorico_inferior}" />
+</p:column>
+<p:column headerText="Poder Calorico Superior">
+<h:outputText value="#{dato.poder_calorico_superior}" />
+</p:column>
+<p:column headerText="Densidad API">
+<h:outputText value="#{dato.densidad_api}" />
+</p:column>
+<p:column headerText="Densidad relativa">
+<h:outputText value="#{dato.densidad_relativa}" />
+</p:column>
+<p:column headerText="Asfaltenos">
+<h:outputText value="#{dato.asfaltenos}" />
+</p:column>
+
+
+<p:column headerText="Acciones">
+<div class="p-grid ui-fluid">
+<div class="p-col-12 p-lg-6">
+<p:commandLink title="Actualizar"
+actionListener="#{beanTerCombustibleBDO.actualizarEntidad}"
+update="@([id$=dialogoMantenimiento])"
+oncomplete="PF('dialogoMantenimiento').show();" process="@this">
+<i class="fa fa-edit Fs20 BoldGray DispBlock"> </i>
+<f:attribute
+name="#{beanTerCombustibleBDO.nombreAtributoCambioEstado}"
+value="#{dato}"></f:attribute>
+</p:commandLink>
+</div>
+</div>
+</p:column>
+</p:dataTable>
+</ui:define>
+<ui:define name="form_comp_visual">
+</ui:define>
+<ui:define name="cab_dialogo">
+Actualización Parametros de Unidad
+</ui:define>
+<ui:define name="datos_dialogo">
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Dato Id"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Dato Id"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.iddato}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor iddato">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+    
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Fecha"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Fecha"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.fecha}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Fecha">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Institucion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Institucion"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.institucion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Institucion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Punto de Inflamacion"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Punto de Inflamacion"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.punto_de_inflamacion}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Punto de Inflamacion">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Punto de Vertido"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Punto de Vertido"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.punto_de_vertido}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Punto de Vertido">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Agua"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Agua"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.agua}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Agua SH">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Cinematica"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Cinematica"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_cinematica}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Cinematica">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Cinematica 80"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Cinematica 80"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_cinematica_80}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Cinematica 80">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Temperatura para Quemado"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Temperatura para Quemado"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.temperatura_para_quemado}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Temperatura para Quemado">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Cenizas"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Cenizas"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.cenizas}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Cenizas">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Redwood"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Redwood"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_redwood}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Redwood">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Viscosidad Saybolt"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Viscosidad Saybolt"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.viscocidad_saybolt}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Viscosidad Saybolt">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Azufre"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Azufre"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.azufre}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Azufre">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Carbon Conradson"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Carbon Conradson"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.carbon_conradson}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Carbon Conradson">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Poder Calorico Inferior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Poder Calorico Inferior"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.poder_calorico_inferior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Poder Calorico Inferior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Poder Calorico Superior"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Poder Calorico Superior"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.poder_calorico_superior}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Poder Calorico Superior">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Densidad API"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Densidad API"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.densidad_api}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Densidad API">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Densidad relativa"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Densidad relativa"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.densidad_relativa}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Densidad relativa">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+<div class="p-col-12 p-md-3">
+    <h:outputText value="Asfaltenos"
+    style="font-size: 10px; font-weight: bold;" />
+    <p:inputText placeholder="Asfaltenos"
+    value="#{beanTerCombustibleBDO.entidadRegistrar.asfaltenos}"
+    onblur="ChangeCase(this);" required="true"
+    requiredMessage="Debe ingresar valor Asfaltenos">
+    <f:ajax event="blur" execute="@this" render="mensajes"></f:ajax>
+    </p:inputText>
+</div>
+
+</ui:define>
+<ui:define name="control_formulario_dialogo">
+<p:commandButton value="Actualizar" style="margin-bottom:10px;"
+id="actualizar" styleClass="ui-button-rounded"
+actionListener="#{beanTerCombustibleBDO.guardarOActualizar}"
+process="PanelActualizar"
+update="@([id$=mensajes]), PanelActualizar, @([id$=tablaDatos])"
+oncomplete="PF('dialogoMantenimiento').hide();" partialSubmit="true" />
+</ui:define>
+<ui:define name="control_dialogo">
+<p:ajax event="close" update="PanelActualizar"
+listener="#{beanTerCombustibleBDO.eventoControlCierreDialogo}" />
+</ui:define>
+</ui:composition>

@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pa="http://primefaces.org/mirage">
+
+
+
+
+	<div class="layout-rightpanel">
+		<div class="right-panel-header">
+			<div class="title">
+				<span>Hoy</span>
+				<h1>
+					#{beanLogin.diaActual()}
+					<p:clock pattern="HH:mm:ss"></p:clock>
+				</h1>
+
+			</div>
+			<a href="#" class="rightpanel-exit-button"> <i
+				class="fa fa-times"></i>
+			</a>
+		</div>
+
+		<div class="right-panel-content">
+            <h:form>
+            
+            	<div class="right-panel-content-row">
+                    <div class="calendar">
+                        <h1>Calendario</h1>
+                        <p:calendar mode="inline" locale="es" navigator="true" />
+                    </div>
+                </div>
+            
+                <div class="right-panel-content-row">
+                    <div class="tasks">
+                        <div class="tasks-header">
+                            <div class="title">
+                                <h1>Tareas</h1>
+                            </div>
+                            <div class="tasks-info">
+                                <span>actividades</span><span class="highlighted"> para </span><span> hoy</span>
+                            </div>
+                        </div>
+                        <ul class="tasks-list">
+                            <li class="tasks-list-item">
+                                <div class="checkbox">
+                                    <p:selectBooleanCheckbox />
+                                    <p>Reporte Ventas</p>
+                                </div>
+                                <div class="tasks-day">
+                                    <span class="time">Today</span>
+                                </div>
+                            </li>
+
+                            <li class="tasks-list-item">
+                                <div class="checkbox">
+                                    <p:selectBooleanCheckbox />
+                                    <p>Faturas</p>
+                                </div>
+                                <div class="tasks-day">
+                                    <span class="time">Today</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            
+            </h:form>
+        </div>
+
+
+	</div>
+
+</ui:composition>

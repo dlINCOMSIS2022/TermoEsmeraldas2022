@@ -1,0 +1,344 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pa="http://primefaces.org/mirage"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<div class="layout-topbar">
+		<div class="layout-topbar-wrapper">
+			<div class="layout-topbar-left">
+				<div class="layout-topbar-logo-wrapper">
+					<a href="#{testParseMenu.lPaginaPrincipal}"
+						class="layout-topbar-logo"> <p:graphicImage
+							name="images/stp.png" library="mirage-layout"
+							style="width: 160px !important" /> <span class="app-name">STP</span>
+					</a>
+				</div>
+
+				<a href="#" class="sidebar-menu-button"> <i class="fa fa-bars"></i>
+				</a> <a href="#" class="megamenu-mobile-button"> <i
+					class="fa fa-align-right megamenu-icon"></i>
+				</a> <a href="#" class="topbar-menu-mobile-button"> <i
+					class="fa fa-ellipsis-v"></i>
+				</a>
+
+				<!-- Mega Menu -->
+				<div class="layout-megamenu-wrapper">
+					<a class="layout-megamenu-button" href="#"> <i
+						class="fa fa-comment"></i> Productos / Servicios
+					</a>
+					
+					<ul class="layout-megamenu">
+						<li><a href="#">JavaServer Faces <i
+								class="fa fa-angle-down"></i></a>
+							<ul>
+								<li class="active-row "><i class="fa fa-circle"></i> <span>
+										<h3>PrimeFaces</h3> <span>UI Components for JSF</span>
+								</span></li>
+								<li><i class="fa fa-circle"></i> <span>
+										<h3>Premium Templates</h3> <span>UI Components for JSF</span>
+								</span></li>
+								<li><i class="fa fa-circle"></i> <span>
+										<h3>Extensions</h3> <span>UI Components for JSF</span>
+								</span></li>
+							</ul></li>
+						<li><a href="#">Angular <i class="fa fa-angle-down"></i></a>
+							<ul>
+								<li><i class="fa fa-circle"></i> <span>
+										<h3>PrimeNG</h3> <span>UI Components for Angular</span>
+								</span></li>
+								<li><i class="fa fa-circle"></i> <span>
+										<h3>Premium Templates</h3> <span>UI Components for
+											Angular</span>
+								</span></li>
+							</ul></li>
+						<li><a href="#">React <i class="fa fa-angle-down"></i></a>
+							<ul>
+								<li><i class="fa fa-circle"></i> <span>
+										<h3>PrimeReact</h3> <span>UI Components for React</span>
+								</span></li>
+								<li class="active-row"><i class="fa fa-circle"></i> <span>
+										<h3>Premium Templates</h3> <span>UI Components for
+											React</span>
+								</span></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="layout-topbar-right">
+				<ul class="layout-topbar-actions">
+					<li class="search-item topbar-item"><a href="#"
+						class="topbar-search-mobile-button"> <i
+							class="topbar-icon fa fa-search"></i>
+					</a>
+						<ul class="search-item-submenu">
+							<li><h:form onsubmit="return false;">
+									<h:panelGroup styleClass="md-inputfield search-input-wrapper">
+										<p:inputText placeholder="Buscar..." />
+										<i class="fa fa-search"></i>
+									</h:panelGroup>
+								</h:form></li>
+						</ul></li>
+					<li class="topbar-item"><a href="#"
+						onclick="PF('dlg2').show();" title="Cambio Clave"> <i
+							class="topbar-icon fa fa-key"></i>
+					</a></li>
+
+
+					<li class="topbar-item profile-item" id="profile"><a href="#">
+							<span class="profile-image-wrapper"> <p:graphicImage
+									id="imagenavatar"
+									rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+									name="general/usuarioDefault.png" library="imagenes" value="#"
+									style="outline: aliceblue; width: 50px; height: 50px; vertical-align: top; border-radius: 50%;" />
+
+								<p:graphicImage
+									rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+									name="images/usuarioDefault.png" library="mirage-layout"
+									value="#"
+									style="outline: aliceblue; width: 50px; height: 50px; vertical-align: top; border-radius: 50%;" />
+
+								<o:graphicImage id="foto1"
+									rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia != null}"
+									style="outline: aliceblue; width: 50px; height: 50px; vertical-align: top; border-radius: 50%;"
+									value="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia}"
+									dataURI="true" />
+
+
+						</span> <span class="profile-info-wrapper">
+								<h3>
+									<p:outputPanel id="nombreUsuario">#{beanLogin.usuarioSession.usuarioSession.lDescripcion}</p:outputPanel>
+								</h3> <span>#{beanLogin.usuarioSession.usuarioSession.rolesAsignados}</span>
+						</span>
+					</a>
+
+						<ul class="profile-item-submenu">
+							<li class="profile-submenu-header">
+								<div class="performance">
+									<span><p:graphicImage
+											rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+											name="images/usuarioDefault.png" library="mirage-layout"
+											value="#"
+											style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 10%;" />
+										<o:graphicImage id="foto2"
+											rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia != null}"
+											style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 10%;"
+											value="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia}"
+											dataURI="true" /></span>
+
+								</div>
+								<div class="profile">
+									<h1>
+										<p:outputPanel id="nombreUsuarioPro">#{beanLogin.usuarioSession.usuarioSession.lDescripcion}</p:outputPanel>
+									</h1>
+									<span>#{beanLogin.usuarioSession.usuarioSession.rolesAsignados}</span>
+								</div>
+							</li>
+							<li class="layout-submenu-item"><i
+								class="fa fa-address-book icon icon-1"></i>
+								<div class="menu-text">
+									<p>#{beanLogin.usuarioSession.usuarioSession.usuario}</p>
+									<span> <p:outputPanel id="correoUsuario">#{beanLogin.usuarioSession.usuarioSession.correo}</p:outputPanel></span>
+								</div></li>
+							<li class="layout-submenu-footer"><h:form>
+									<p:commandLink title="Mi Perfil"
+										update=" @([id$=dialogoMantenimientoPerfil])"
+										actionListener="#{beanMantenedorUsuario.actualizarUsuario}"
+										oncomplete="PF('dialogoMantenimientoPerfil').show();"
+										process="@this">
+										<button class="signout-button">Editar</button>
+
+										<f:attribute
+											name="#{beanMantenedorUsuario.nombreAtributoCambioEstado}"
+											value="#{beanLogin.usuarioSession.usuarioSession}"></f:attribute>
+
+									</p:commandLink>
+									<h:commandLink action="#{beanLogin.logout}" title="Salir">
+										<button class="signout-button">Cerrar Sesión</button>
+									</h:commandLink>
+								</h:form></li>
+
+						</ul></li>
+
+					<li><a href="#" class="layout-rightpanel-button"> <i
+							class="fa fa-arrow-left"></i>
+					</a></li>
+				</ul>
+
+				<ul class="profile-mobile-wrapper">
+					<li class="topbar-item profile-item"><a href="#"> <span
+							class="profile-image-wrapper"> <p:graphicImage
+									rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+									name="general/usuarioDefault.png" library="imagenes" value="#"
+									style="outline: aliceblue; width: 50px; height: 50px; vertical-align: top; border-radius: 10%;" />
+								<o:graphicImage
+									rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia != null}"
+									style="outline: aliceblue; width: 50px; height: 50px; vertical-align: top; border-radius: 10%;"
+									value="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia}"
+									dataURI="true" />
+						</span> <span class="profile-info-wrapper">
+								<h3>#{beanLogin.usuarioSession.usuarioSession.lDescripcion}</h3>
+								<span>#{beanLogin.usuarioSession.usuarioSession.rolesAsignados}</span>
+						</span>
+					</a>
+						<ul>
+							<li class="profile-submenu-header">
+								<div class="performance">
+									<span><p:graphicImage
+											rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+											name="general/usuarioDefault.png" library="imagenes"
+											value="#"
+											style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 10%;" />
+										<o:graphicImage
+											rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia != null}"
+											style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 10%;"
+											value="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia}"
+											dataURI="true" /></span>
+								</div>
+								<div class="profile">
+									<h1>#{beanLogin.usuarioSession.usuarioSession.lDescripcion}</h1>
+									<span>#{beanLogin.usuarioSession.usuarioSession.correo}</span>
+								</div>
+							</li>
+							<li class="layout-submenu-footer"><h:form>
+									<h:commandLink action="#{beanLogin.logout}" title="Salir">
+										<button class="signout-button">Cerrar Sesión</button>
+									</h:commandLink>
+								</h:form></li>
+						</ul></li>
+				</ul>
+			</div>
+
+
+		</div>
+	</div>
+
+	<h:form>
+		<p:dialog header="Cambio de clave" widgetVar="dlg2" modal="true"
+			closable="false" responsive="true" width="300px"
+			visible="#{beanLogin.usuarioSession.usuarioSession.esNuevo eq 'S'}">
+			<p:outputPanel id="cambClae">
+				<p:messages globalOnly="false" showDetail="false" closable="true"
+					id="mensajeGeneral"></p:messages>
+
+				<div class="p-grid ui-fluid">
+					<div class="p-col-12 p-lg-4">
+						<h:outputText value="Usuario: " />
+					</div>
+					<div class="p-col-12 p-lg-8">
+						<p:inputText
+							value="#{beanLogin.usuarioSession.usuarioSession.usuario}"
+							readonly="true"></p:inputText>
+					</div>
+					<div class="p-col-12 p-lg-4">
+						<h:outputText value="Clave: " />
+					</div>
+					<div class="p-col-12 p-lg-8">
+						<p:password feedback="false" value="#{beanLogin.cambContrase1}"></p:password>
+					</div>
+					<div class="p-col-12 p-lg-4">
+						<h:outputText value="Rep. Clave: " />
+					</div>
+					<div class="p-col-12 p-lg-8">
+						<p:password feedback="false" value="#{beanLogin.cambContrase2}"></p:password>
+					</div>
+					<div class="p-col-12">
+						<p:commandButton value="Aceptar"
+							actionListener="#{beanLogin.cambiarContrasenia}"
+							process="@([id$=cambClae])" update="@([id$=cambClae])"
+							partialSubmit="true">
+
+						</p:commandButton>
+					</div>
+					<div class="p-col-12">
+						<p:commandButton value="Cerrar"
+							actionListener="#{beanLogin.cerrarVentana}" ajax="false">
+						</p:commandButton>
+					</div>
+				</div>
+			</p:outputPanel>
+
+		</p:dialog>
+	</h:form>
+
+	<h:form>
+		<p:dialog widgetVar="dialogoMantenimientoPerfil"
+			id="dialogoMantenimientoPerfil" width="400px" responsive="true"
+			header="Actualización Perfil">
+			<p:messages globalOnly="false" id="mensajeProfile"></p:messages>
+			<div class="p-grid ui-fluid">
+				<div class="p-col-12" align="center">
+
+					<p:graphicImage
+						rendered="#{beanLogin.usuarioSession.usuarioSession.imagenReferencia == null}"
+						name="images/usuarioDefault.png" library="mirage-layout" value="#"
+						style="outline: aliceblue; width: 100px; height: 100px; vertical-align: top; border-radius: 10%;" />
+
+					<o:graphicImage id="idAvatarDLG"
+						style="outline: aliceblue; width: 150px; height: 150px; vertical-align: top; border-radius: 10%;"
+						value="#{beanMantenedorUsuario.usuarioActual.imagenReferencia}"
+						rendered="#{beanMantenedorUsuario.usuarioActual.imagenReferencia != null}"
+						dataURI="true" />
+				</div>
+
+				<div class="p-col-12 p-lg-4">
+					<p:outputLabel value="Usuario:" />
+				</div>
+				<div class="p-col-12 p-lg-8">
+					<p:inputText placeholder="Usuario"
+						value="#{beanMantenedorUsuario.usuarioActual.usuario}"
+						id="Usuario" readonly="true" />
+				</div>
+
+				<div class="p-col-12 p-lg-4">
+					<p:outputLabel value="Descripción:" />
+				</div>
+				<div class="p-col-12 p-lg-8">
+					<p:inputText placeholder="Descripción"
+						value="#{beanMantenedorUsuario.usuarioActual.lDescripcion}"
+						onblur="ChangeCase(this);" required="true" id="Descripción" />
+				</div>
+
+				<div class="p-col-12 p-lg-12">
+					<p:inputText placeholder="Email"
+						value="#{beanMantenedorUsuario.usuarioActual.correo}"
+						required="true" validatorMessage="Email incorrecto" id="Email">
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+					</p:inputText>
+				</div>
+
+				<div class="p-col-12 p-md-12">
+					<p:fileUpload listener="#{beanMantenedorUsuario.subir}"
+						mode="advanced" dragDropSupport="true" update="@this"
+						process="@this" sizeLimit="1000000" fileLimit="1"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" cancelLabel="Limpiar"
+						uploadLabel="Subir" invalidFileMessage="Archivo no permitido"
+						invalidSizeMessage="El tamaño no es permitido" required="false"
+						label="Escoja" />
+				</div>
+
+				<div class="p-col-12">
+
+					<p:commandButton value="Actualizar" styleClass="CyanButton"
+						actionListener="#{beanMantenedorUsuario.guardarOActualizar}"
+						process="@form"
+						update="@([id$=nombreUsuario]), @([id$=nombreUsuarioPro]), @([id$=correoUsuario]), @([id$=foto1]), @([id$=foto2])"
+						oncomplete="PF('dialogoMantenimientoPerfil').hide();">
+					</p:commandButton>
+
+				</div>
+
+			</div>
+
+
+		</p:dialog>
+	</h:form>
+
+
+
+</ui:composition>
